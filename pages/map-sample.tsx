@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { useEffect } from "react";
 import MapComponent from "../components/mapComponent";
 import getCatPositions from "../channel/catPositions";
@@ -88,7 +89,16 @@ const Map: React.FC = () => {
     })
   }, [kakaoMap]);
 
-  return <MapComponent ref={kakaoMap} />;
+  return (
+    <>
+      <Head>
+        <title>지도 - 우리 동네 고양이</title>
+        <meta name="description" content="AWS ABP 2021 - 우리 동네 고양이" />
+        <link rel="icon" href="/cat-face-256.png" />
+      </Head>
+      <MapComponent ref={kakaoMap} />
+    </>
+  );
 };
 
 export default Map;
