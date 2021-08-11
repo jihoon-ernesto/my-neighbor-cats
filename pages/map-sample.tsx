@@ -17,8 +17,8 @@ const createMarkerImage = (src: string, size: Size, options?: any) => {
 // TODO: use image thumbnail
 const createMarkers = (map: Map) => {
   const { kakao } = window as any;
-  const imgSrc = 'https://icon-library.com/images/cat-face-icon/cat-face-icon-4.jpg';
-  const imgSize = new kakao.maps.Size(60, 54);
+  const imgSrc = '/cat-face-256.png';
+  const imgSize = new kakao.maps.Size(64, 64);
 
   const Marker = kakao.maps.Marker;
   const LatLng = kakao.maps.LatLng;
