@@ -1,6 +1,7 @@
 import Head from "next/head";
 import React, { useEffect } from "react";
 import MapComponent from "../components/mapComponent";
+import Upload from "../components/upload.js";
 import getCatPositions from "../channel/catPositions";
 
 // TODO: fix types
@@ -96,6 +97,7 @@ const Map: React.FC = () => {
         <meta name="description" content="AWS ABP 2021 - 우리 동네 고양이" />
         <link rel="icon" href="/cat-face-256.png" />
       </Head>
+      <Upload />
       <MapComponent ref={kakaoMap} />
     </>
   );
