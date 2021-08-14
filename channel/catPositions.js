@@ -1,3 +1,11 @@
+const getMapInitPosition = () => {
+  // return a random position among the current cat positions
+  const catPositions = getCatPositions();
+  const randomIndex = parseInt(catPositions.length * Math.random());
+
+  return catPositions[randomIndex];
+}
+
 // TODO: get info from backend
 const getCatPositions = () => {
   return [
@@ -11,4 +19,7 @@ const getCatPositions = () => {
   ];
 }
 
-export default getCatPositions;
+export {
+  getMapInitPosition,
+  getCatPositions,
+};

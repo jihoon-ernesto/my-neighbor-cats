@@ -14,27 +14,29 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          우리 동네 고양이<br/>
+          🐈 🐈
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          (여기 대충 앱 소개)
         </p>
 
         <div className={styles.grid}>
+          {/*
           <a href="https://nextjs.org/docs" className={styles.card}>
             <h2>Documentation &rarr;</h2>
             <p>Find in-depth information about Next.js features and API.</p>
           </a>
+          */}
 
           <Link
-            href="/map-sample"
+            href="/cats-map"
           >
             <div className={styles.card}>
-              <h2>Kakao map sample &rarr;</h2>
+              <h2>고양이 지도 &rarr;</h2>
               <p>
-                Kakao Maps API - sample page
+                고양이들이 살고 있는 우리 동네 지도
               </p>
             </div>
           </Link>
