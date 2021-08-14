@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { getRandomPhotoUrl } from '../channel/backendInfo.js';
 
 // TODO: fix type
@@ -8,7 +9,12 @@ const Photo: any = () => {
 
   return (
     <>
-      <img src={photoUrl} style={{ width: "100%", height: "100%" }} />
+      <Image
+        src={photoUrl}
+        alt="cat photo"
+        layout="fill"
+        objectFit="contain"
+      />
     </>
   );
 };
