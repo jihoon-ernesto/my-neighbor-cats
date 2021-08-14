@@ -2,7 +2,7 @@ import Head from "next/head";
 import React, { useEffect } from "react";
 import MapComponent from "../components/mapComponent";
 import Upload from "../components/upload.js";
-import { getMapInitPosition, getCatPositions } from "../channel/catPositions";
+import { getMapInitPosition, getCatPositions } from "../channel/backendInfo";
 
 // TODO: fix types
 type Map = {};
@@ -25,11 +25,17 @@ const createMarkers = (map: Map) => {
   const LatLng = kakao.maps.LatLng;
 
   const markers = getCatPositions().map(pos => {
-    return new Marker({
+    const marker = new Marker({
       position: new LatLng(pos.lat, pos.lng),
       image: createMarkerImage(imgSrc, imgSize),
       map,
-    })
+    });
+
+    kakao.maps.event.addListener(marker, 'click', () => {
+      window.location.href = '/cat-photo';
+    });
+
+    return marker;
   });
 
   return markers;
