@@ -24,9 +24,9 @@ function Upload() {
       .then(data => {
         console.log(data);
         if (data.status === 204) {
-          console.log('upload success');
+          alert('upload success');
         } else {
-          console.log('upload fail');
+          alert('upload failure');
         }
       });
   }

@@ -2,7 +2,7 @@ import Head from "next/head";
 import React, { useEffect } from "react";
 import MapComponent from "../components/mapComponent";
 import Upload from "../components/upload.js";
-import getCatPositions from "../channel/catPositions";
+import { getMapInitPosition, getCatPositions } from "../channel/catPositions";
 
 // TODO: fix types
 type Map = {};
@@ -56,10 +56,9 @@ const Map: React.FC = () => {
         return;
       }
 
-      // init position: 강남역 사거리
-      const x = 127.02770621963765;
-      const y = 37.498004414546934;
-      const coords = new kakao.maps.LatLng(y, x); // 지도의 중심좌표
+      const initPos = getMapInitPosition();
+      const coords = new kakao.maps.LatLng(initPos.lat, initPos.lng); // 지도의 중심좌표
+
       const options = {
         center: coords,
         level: 2,
@@ -79,7 +78,7 @@ const Map: React.FC = () => {
       // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
       map.addControl(
         mapTypeControl,
-        (window as any).kakao.maps.ControlPosition.TOPRIGHT
+        kakao.maps.ControlPosition.TOPRIGHT
       );
       // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
       const zoomControl = new kakao.maps.ZoomControl();
