@@ -14,6 +14,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "channel/catPositions.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "channel/backendInfo.js"],
   "exclude": ["node_modules"]
 }
