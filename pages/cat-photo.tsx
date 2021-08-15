@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { getRandomPhotoUrl } from '../channel/backendInfo.js';
+import styles from '../styles/CatPhoto.module.css'
 
 // TODO: fix type
 const Photo: any = () => {
@@ -9,6 +10,10 @@ const Photo: any = () => {
 
   return (
     <>
+      <p className={styles.loadingMsg}>
+        Loading...
+      </p>
+
       <Image
         src={photoUrl}
         alt="cat photo"
