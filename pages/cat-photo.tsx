@@ -15,6 +15,19 @@ const Photo: any = () => {
         layout="fill"
         objectFit="contain"
       />
+
+      <button
+        onClick={() => window.history.back()}
+        style={{
+          width: 80,
+          height: 40,
+          fontSize: 14,
+          position: 'absolute',
+          cursor: 'pointer',
+        }}
+        >
+        ← Back
+      </button>
     </>
   );
 };
