@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import MapComponent from "../components/mapComponent";
 import Upload from "../components/upload.js";
 import { getMapInitPosition, getCatPositions } from "../channel/backendInfo";
+import styles from '../styles/CatsMap.module.css';
 
 // TODO: fix types
 type Map = {};
@@ -27,7 +28,9 @@ const createMarkers = (map: Map) => {
   const markers = getCatPositions().map(pos => {
     const marker = new Marker({
       position: new LatLng(pos.lat, pos.lng),
-      image: createMarkerImage(imgSrc, imgSize),
+      image: createMarkerImage(imgSrc, imgSize, {
+        alt: 'cat-marker',
+      }),
       map,
     });
 
@@ -96,7 +99,9 @@ const Map: React.FC = () => {
   }, [kakaoMap]);
 
   return (
-    <>
+    <div
+      className={styles.mapPage}
+      >
       <Head>
         <title>지도 - 우리 동네 고양이</title>
         <meta name="description" content="AWS ABP 2021 - 우리 동네 고양이" />
@@ -104,7 +109,7 @@ const Map: React.FC = () => {
       </Head>
       <Upload />
       <MapComponent ref={kakaoMap} />
-    </>
+    </div>
   );
 };
 
