@@ -1,12 +1,22 @@
 import Image from 'next/image';
-import { getRandomPhotoUrl } from '../channel/backendInfo.js';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { getCatPhotoUrl } from '../channel/backendInfo.js';
 import styles from '../styles/CatPhoto.module.css'
 
 // TODO: fix type
 const Photo: any = () => {
 
-  // TODO: get proper URL of a cat photo
-  const photoUrl = getRandomPhotoUrl();
+  const router = useRouter();
+  const [imageSrc, setImageSrc] = useState('');
+
+  useEffect(() => {
+    const { id } = router.query;
+    const photoUrl = getCatPhotoUrl(id);
+    console.log('id: ' + id + ', photoUrl: ' + photoUrl);
+
+    setImageSrc(photoUrl);
+  });
 
   return (
     <>
@@ -14,12 +24,14 @@ const Photo: any = () => {
         Loading...
       </p>
 
-      <Image
-        src={photoUrl}
-        alt="cat photo"
-        layout="fill"
-        objectFit="contain"
-      />
+      {imageSrc && (
+        <Image
+          src={imageSrc}
+          alt="cat photo"
+          layout="fill"
+          objectFit="contain"
+        />
+      )}
 
       <button
         onClick={() => window.history.back()}
