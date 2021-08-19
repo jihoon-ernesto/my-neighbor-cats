@@ -25,8 +25,10 @@ const createMarkers = (map: Map, cats: Array<Object>) => {
   const Marker = kakao.maps.Marker;
   const LatLng = kakao.maps.LatLng;
 
-  const markers = getCatList().map((cat) => {
-    const thumbnail = getCatThumbnailUrl(cat.id);
+  // TODO: fix type
+  const markers = cats?.map(async (cat: any) => {
+
+    const thumbnail = await getCatThumbnailUrl(cat.id);
     const marker = new Marker({
       position: new LatLng(cat.position.lat, cat.position.lng),
       image: createMarkerImage(thumbnail, imgSize, {
@@ -60,14 +62,14 @@ const Map: React.FC = () => {
       return;
     }
 
-    kakao.maps.load(() => {
+    kakao.maps.load(async () => {
       if (!kakaoMap || !kakaoMap.current) {
         console.error('map element is not ready!');
         return;
       }
 
       // TODO: use the current location
-      const initPos = getMapInitPosition();
+      const initPos = await getMapInitPosition();
       const coords = new kakao.maps.LatLng(initPos.lat, initPos.lng); // 지도의 중심좌표
 
       const options = {
@@ -76,7 +78,7 @@ const Map: React.FC = () => {
       };
       const map = new kakao.maps.Map(kakaoMap.current, options);
 
-      const cats = getCatList(map.getBounds());
+      const cats = await getCatList(map.getBounds());
       createMarkers(map, cats);
 
       // 맵의 중앙으로 이동
