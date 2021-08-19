@@ -2,7 +2,7 @@ import Head from "next/head";
 import React, { useEffect } from "react";
 import MapComponent from "../components/mapComponent";
 import Upload from "../components/upload.js";
-import { getMapInitPosition, getCatPositions } from "../channel/backendInfo";
+import { getMapInitPosition, getCatList } from "../channel/backendInfo";
 import styles from '../styles/CatsMap.module.css';
 
 // TODO: fix types
@@ -17,7 +17,7 @@ const createMarkerImage = (src: string, size: Size, options?: any) => {
 
 // 임시 마커 생성 - 고양이 아이콘
 // TODO: use image thumbnail
-const createMarkers = (map: Map) => {
+const createMarkers = (map: Map, cats: Array<Object>) => {
   const { kakao } = window as any;
   const imgSrc = '/cat-face-256.png';
   const imgSize = new kakao.maps.Size(64, 64);
@@ -25,9 +25,9 @@ const createMarkers = (map: Map) => {
   const Marker = kakao.maps.Marker;
   const LatLng = kakao.maps.LatLng;
 
-  const markers = getCatPositions().map(pos => {
+  const markers = getCatList().map(cat => {
     const marker = new Marker({
-      position: new LatLng(pos.lat, pos.lng),
+      position: new LatLng(cat.position.lat, cat.position.lng),
       image: createMarkerImage(imgSrc, imgSize, {
         alt: 'cat-marker',
       }),
@@ -35,7 +35,7 @@ const createMarkers = (map: Map) => {
     });
 
     kakao.maps.event.addListener(marker, 'click', () => {
-      window.location.href = '/cat-photo';
+      window.location.href = `/cat-photo?id=${cat.id}`;
     });
 
     return marker;
@@ -65,6 +65,7 @@ const Map: React.FC = () => {
         return;
       }
 
+      // TODO: use the current location
       const initPos = getMapInitPosition();
       const coords = new kakao.maps.LatLng(initPos.lat, initPos.lng); // 지도의 중심좌표
 
@@ -74,7 +75,8 @@ const Map: React.FC = () => {
       };
       const map = new kakao.maps.Map(kakaoMap.current, options);
 
-      createMarkers(map);
+      const cats = getCatList(map.getBounds());
+      createMarkers(map, cats);
 
       // 맵의 중앙으로 이동
       map.relayout();
