@@ -12,11 +12,11 @@ const Photo: any = () => {
 
   useEffect(() => {
     const { id } = router.query;
-    const photoUrl = getCatPhotoUrl(id);
+    const photoUrl = getCatPhotoUrl(Array.isArray(id) ? id[0] : id || '');
     console.log('id: ' + id + ', photoUrl: ' + photoUrl);
 
     setImageSrc(photoUrl);
-  });
+  }, [router.query]);
 
   return (
     <>

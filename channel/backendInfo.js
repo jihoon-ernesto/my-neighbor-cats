@@ -4,43 +4,36 @@ const sampleCatList = [
   {
     'id': 'cat-id-1',
     'name': 'cat-name-1',
-    'thumbnail': 'cat-thumbnail-url-1',
     'position': { 'lat': 37.499590490909185, 'lng': 127.0263723554437 },
   },
   {
     'id': 'cat-id-2',
     'name': 'cat-name-2',
-    'thumbnail': 'cat-thumbnail-url-2',
     'position': { 'lat': 37.499427948430814, 'lng': 127.02794423197847 },
   },
   {
     'id': 'cat-id-3',
     'name': 'cat-name-3',
-    'thumbnail': 'cat-thumbnail-url-3',
     'position': { 'lat': 37.498553760499505, 'lng': 127.02882598822454 },
   },
   {
     'id': 'cat-id-4',
     'name': 'cat-name-4',
-    'thumbnail': 'cat-thumbnail-url-4',
     'position': { 'lat': 37.497625593121384, 'lng': 127.02935713582038 },
   },
   {
     'id': 'cat-id-5',
     'name': 'cat-name-5',
-    'thumbnail': 'cat-thumbnail-url-5',
     'position': { 'lat': 37.49646391248451, 'lng': 127.02675574250912 },
   },
   {
     'id': 'cat-id-6',
     'name': 'cat-name-6',
-    'thumbnail': 'cat-thumbnail-url-6',
     'position': { 'lat': 37.49629291770947, 'lng': 127.02587362608637 },
   },
   {
     'id': 'cat-id-7',
     'name': 'cat-name-7',
-    'thumbnail': 'cat-thumbnail-url-7',
     'position': { 'lat': 37.49754540521486, 'lng': 127.02546694890695 },
   },
 ];
@@ -55,15 +48,47 @@ const sampleCatPhotos = {
   'cat-id-7': '/sample-photos/8A67ECDA-B080-47D4-BEC2-2FF54DA49922.JPG',
 };
 
-// TODO: get info from backend
+const sampleCatThumbnails = {
+  'cat-id-1': '/cat-face-256.png',
+  'cat-id-2': '/cat-face-256.png',
+  'cat-id-3': '/cat-face-256.png',
+  'cat-id-4': '/cat-face-256.png',
+  'cat-id-5': '/cat-face-256.png',
+  'cat-id-6': '/cat-face-256.png',
+  'cat-id-7': '/cat-face-256.png',
+};
+
+/**
+ * param {object=} mapBounds - ref) https://apis.map.kakao.com/web/documentation/#Map_getBounds
+ *                        ex) { "ha": 127.02713981495673, "qa": 37.495319546330926,
+ *                              "oa": 127.03156893480515, "pa": 37.49992258878263 }
+ * returns {array<object>}
+ * todo get info from backend
+ * todo use JSDoc and conform type checking
+ */
 const getCatList = (mapBounds) => {
   // TODO: consider mapBounds - only the cats within the map area
+  console.log(`getCatList with mapBounds of ${JSON.stringify(mapBounds)}`);
+
   return sampleCatList;
 }
 
-// TODO: get info from backend
-const getCatPhotoUrl = (id) => {
-  return sampleCatPhotos[id] || '';
+/**
+ * @param {string} catId
+ * @returns {string}
+ * @todo get info from backend
+ */
+const getCatPhotoUrl = (catId) => {
+  return sampleCatPhotos[catId] || '';
+}
+
+/**
+ * @param {string} catId
+ * @returns {string}
+ * @todo get info from backend
+ */
+const getCatThumbnailUrl = (catId) => {
+  return sampleCatThumbnails[catId] || '';
 }
 
 // TODO: use current user location
@@ -78,4 +103,5 @@ export {
   getMapInitPosition,
   getCatList,
   getCatPhotoUrl,
+  getCatThumbnailUrl,
 };
