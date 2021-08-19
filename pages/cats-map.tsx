@@ -2,7 +2,7 @@ import Head from "next/head";
 import React, { useEffect } from "react";
 import MapComponent from "../components/mapComponent";
 import Upload from "../components/upload.js";
-import { getMapInitPosition, getCatList } from "../channel/backendInfo";
+import { getMapInitPosition, getCatList, getCatThumbnailUrl } from "../channel/backendInfo";
 import styles from '../styles/CatsMap.module.css';
 
 // TODO: fix types
@@ -19,16 +19,17 @@ const createMarkerImage = (src: string, size: Size, options?: any) => {
 // TODO: use image thumbnail
 const createMarkers = (map: Map, cats: Array<Object>) => {
   const { kakao } = window as any;
-  const imgSrc = '/cat-face-256.png';
+
   const imgSize = new kakao.maps.Size(64, 64);
 
   const Marker = kakao.maps.Marker;
   const LatLng = kakao.maps.LatLng;
 
-  const markers = getCatList().map(cat => {
+  const markers = getCatList().map((cat) => {
+    const thumbnail = getCatThumbnailUrl(cat.id);
     const marker = new Marker({
       position: new LatLng(cat.position.lat, cat.position.lng),
-      image: createMarkerImage(imgSrc, imgSize, {
+      image: createMarkerImage(thumbnail, imgSize, {
         alt: 'cat-marker',
       }),
       map,
