@@ -28,7 +28,7 @@ const createMarkers = (map: Map, cats: Array<Object>) => {
   // TODO: fix type
   const markers = cats?.map(async (cat: any) => {
 
-    const thumbnail = await getCatThumbnailUrl(cat.id);
+    const thumbnail = await getCatThumbnailUrl(cat.cat_id);
     const marker = new Marker({
       position: new LatLng(cat.position.lat, cat.position.lng),
       image: createMarkerImage(thumbnail, imgSize, {
@@ -38,7 +38,7 @@ const createMarkers = (map: Map, cats: Array<Object>) => {
     });
 
     kakao.maps.event.addListener(marker, 'click', () => {
-      window.location.href = `/cat-photo?id=${cat.id}`;
+      window.location.href = `/cat-photo?id=${cat.cat_id}`;
     });
 
     return marker;

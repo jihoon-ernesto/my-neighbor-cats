@@ -3,37 +3,37 @@ import json
 sampleCatList = json.dumps(
   [
     {
-      'id': 'cat-id-1',
+      'cat_id': 'cat-id-1',
       'name': 'cat-name-1',
       'position': { 'lat': 37.499590490909185, 'lng': 127.0263723554437 },
     },
     {
-      'id': 'cat-id-2',
+      'cat_id': 'cat-id-2',
       'name': 'cat-name-2',
       'position': { 'lat': 37.499427948430814, 'lng': 127.02794423197847 },
     },
     {
-      'id': 'cat-id-3',
+      'cat_id': 'cat-id-3',
       'name': 'cat-name-3',
       'position': { 'lat': 37.498553760499505, 'lng': 127.02882598822454 },
     },
     {
-      'id': 'cat-id-4',
+      'cat_id': 'cat-id-4',
       'name': 'cat-name-4',
       'position': { 'lat': 37.497625593121384, 'lng': 127.02935713582038 },
     },
     {
-      'id': 'cat-id-5',
+      'cat_id': 'cat-id-5',
       'name': 'cat-name-5',
       'position': { 'lat': 37.49646391248451, 'lng': 127.02675574250912 },
     },
     {
-      'id': 'cat-id-6',
+      'cat_id': 'cat-id-6',
       'name': 'cat-name-6',
       'position': { 'lat': 37.49629291770947, 'lng': 127.02587362608637 },
     },
     {
-      'id': 'cat-id-7',
+      'cat_id': 'cat-id-7',
       'name': 'cat-name-7',
       'position': { 'lat': 37.49754540521486, 'lng': 127.02546694890695 },
     },
