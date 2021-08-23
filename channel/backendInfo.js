@@ -13,14 +13,19 @@ const getCatList = async (mapBounds) => {
   // TODO: consider mapBounds - only the cats within the map area
   console.log(`getCatList with mapBounds of ${JSON.stringify(mapBounds)}`);
 
-  const resp = await fetch(`${API_URL}?q=cat-list`, {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    method: 'GET',
-  });
+  let catList = [];
+  try {
+    const resp = await fetch(`${API_URL}?q=cat-list`, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'GET',
+    });
+    catList = await resp.json();
+  } catch (e) {
+    console.error('Error in fetching cat-list', e);
+  }
 
-  const catList = await resp.json();
   return catList;
 }
 
@@ -49,15 +54,20 @@ const getCatPhotoUrl = (catId) => {
  * @todo get info from backend
  */
 const getCatThumbnailUrl = async (catId) => {
-  const resp = await fetch(`${API_URL}?q=thumbnail-url&id=${catId}`, {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    method: 'GET',
-  });
+  let url = '';
+  try {
+    const resp = await fetch(`${API_URL}?q=thumbnail-url&id=${catId}`, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'GET',
+    });
+    url = await resp.text();
+  } catch (e) {
+    console.error(`Error in fetching thumbnail-url for ${catId}`, e);
+  }
 
-  const url = await resp.text();
-  return url;
+  return url || '/question-mark.png';
 }
 
 // TODO: use current user location
@@ -65,7 +75,10 @@ const getMapInitPosition = async () => {
   const catList = await getCatList();
   const randomIndex = parseInt(catList.length * Math.random());
 
-  return catList[randomIndex]?.position || { lat: 0, lng: 0 };
+  return catList[randomIndex]?.position || {
+    lat: 33.450701,
+    lng: 126.570667,
+  };
 }
 
 export {
