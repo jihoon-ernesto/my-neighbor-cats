@@ -152,7 +152,7 @@ def lambda_handler(event, context):
     return {
       'statusCode': 200,
       'headers': commonHeaders,
-      'body': getPhotoUrl[param_id]
+      'body': getPhotoUrl(param_id)
     }
 
   elif param_q == 'thumbnail-url':
@@ -161,7 +161,7 @@ def lambda_handler(event, context):
     return {
       'statusCode': 200,
       'headers': commonHeaders,
-      'body': getThumbnailUrl[param_id]
+      'body': getThumbnailUrl(param_id)
     }
 
   else:
