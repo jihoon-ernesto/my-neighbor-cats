@@ -6,8 +6,8 @@ import Auth from "@aws-amplify/auth";
 Amplify.configure({
   Auth: {
     region: "ap-northeast-2", //! Konfiguration
-    userPoolId: process.env.USER_POOL_ID,
-    userPoolWebClientId: process.env.USER_POOL_CLIENT_ID,
+    userPoolId: process.env.NEXT_PUBLIC_USER_POOL_ID,
+    userPoolWebClientId: process.env.NEXT_PUBLIC_USER_POOL_CLIENT_ID,
 
     // OPTIONAL - Configuration for cookie storage
     // Note: if the secure flag is set to true, then the cookie transmission requires a secure protocol
@@ -16,7 +16,7 @@ Amplify.configure({
       // REQUIRED - Cookie domain (only required if cookieStorage is provided)
       // This should be the subdomain in production as the cookie should only
       // be present for the current site
-      domain: process.env.AUTH_COOKIE_DOMAIN,
+      domain: process.env.NEXT_PUBLIC_AUTH_COOKIE_DOMAIN,
       // OPTIONAL - Cookie path
       path: "/",
       // OPTIONAL - Cookie expiration in days
@@ -31,12 +31,12 @@ Amplify.configure({
 
 Auth.configure({
   oauth: {
-    domain: process.env.IDP_DOMAIN,
+    domain: process.env.NEXT_PUBLIC_IDP_DOMAIN,
     scope: ["email", "openid"],
     // we need the /autologin step in between to set the cookies properly,
     // we don't need that when signing out though
-    redirectSignIn: process.env.REDIRECT_SIGN_IN,
-    redirectSignOut: process.env.REDIRECT_SIGN_OUT,
+    redirectSignIn: process.env.NEXT_PUBLIC_REDIRECT_SIGN_IN,
+    redirectSignOut: process.env.NEXT_PUBLIC_REDIRECT_SIGN_OUT,
     responseType: "token",
   },
 });
