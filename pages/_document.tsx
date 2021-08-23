@@ -4,7 +4,7 @@ type Props = {}
 
 export default class MyDocument extends Document<Props> {
   render() {
-    const mapApiKey = process.env.MAP_API_KEY;
+    const mapApiKey = process.env.NEXT_PUBLIC_MAP_API_KEY;
     return (
       <Html>
         <Head>
