@@ -1,7 +1,6 @@
 import json
 import boto3
 import uuid
-from decimal import Decimal
 from boto3.dynamodb.conditions import Key
 
 commonHeaders = {
@@ -26,15 +25,15 @@ def createCat(Item):
     'headers': commonHeaders,
     'body': response
   }
-  
+
 def insertCatPhoto(Item):
   data_type = "position#" + uuid.uuid4().hex
   response = dynamo.put_item(
     Item = {
       "cat_id": Item["cat_id"],
       "data_type": data_type,
-      "lat": Decimal(str(Item["lat"])),
-      "lng": Decimal(str(Item["lng"])),
+      "lat": str(Item["lat"]),
+      "lng": str(Item["lng"]),
       "photo_url": Item["photo_url"],
       "thumbnail_url": Item["thumbnail_url"]
     }
@@ -44,36 +43,36 @@ def insertCatPhoto(Item):
     'headers': commonHeaders,
     'body': response
   }
-  
+
 def getCatNameList():
   args = {
     'FilterExpression' : Key('data_type').begins_with('info')
   }
-  response = dynamo.scan(**args);
+  response = dynamo.scan(**args)
   return {
     'statusCode': 200,
     'headers': commonHeaders,
-    'body': response['Items']
+    'body': json.dumps(response['Items'])
   }
 
 def getCatPhotoList():
   args = {
     'FilterExpression' : Key('data_type').begins_with('position')
   }
-  response = dynamo.scan(**args);
+  response = dynamo.scan(**args)
   return {
     'statusCode': 200,
     'headers': commonHeaders,
-    'body': response['Items']
+    'body': json.dumps(response['Items'])
   }
-  
+
 def getPhotoUrl(Item):
   catId = Item['cat_id']
   response = dynamo.query(
     KeyConditionExpression=Key('cat_id').eq(catId) & Key('data_type').begins_with('position')
   )
   items = response['Items']
-  
+
   if len(items) > 0:
     return {
       'statusCode': 200,
@@ -86,13 +85,13 @@ def getPhotoUrl(Item):
       'headers': commonHeaders
     }
 
-def getThumbnailUrl(catId):
+def getThumbnailUrl(Item):
   catId = Item['cat_id']
   response = dynamo.query(
     KeyConditionExpression=Key('cat_id').eq(catId) & Key('data_type').begins_with('position')
   )
   items = response['Items']
-  
+
   if len(items) > 0:
     return {
       'statusCode': 200,
@@ -104,26 +103,36 @@ def getThumbnailUrl(catId):
       'statusCode': 400,
       'headers': commonHeaders
     }
-  
+
 
 def lambda_handler(event, context):
-  operation = event['operation']
+  # print("------\nReceived event: " + json.dumps(event, indent=2) + "\n-----\n")
+
+  httpMethod = event['httpMethod']
+  if httpMethod == 'OPTIONS' :
+    return {
+      'statusCode': 200,
+      'headers': commonHeaders
+    }
+
+  body = json.loads(event['body'])
+  operation = body['operation']
+
   operations = {
       'create': lambda x: createCat(**x),
       'insert_photo': lambda x: insertCatPhoto(**x),
       'photo-url': lambda x: getPhotoUrl(**x),
-      'thumbnail-url': lambda x: dynamo.get_item(**x),
+      'thumbnail-url': lambda x: getThumbnailUrl(**x),
       # 'update': lambda x: dynamo.update_item(**x),
       # 'delete': lambda x: dynamo.delete_item(**x),
       'cat-name-list': lambda x: getCatNameList(),
       'cat-photo-list': lambda x: getCatPhotoList()
   }
-  
+
   if operation in operations :
-    return operations[operation](event.get('payload'))
-  else : 
+    return operations[operation](body.get('payload'))
+  else :
     return {
       'statusCode': 400,
       'headers': commonHeaders
     }
-  

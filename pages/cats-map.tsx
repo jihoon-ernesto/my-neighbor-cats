@@ -2,7 +2,7 @@ import Head from "next/head";
 import React, { useEffect } from "react";
 import MapComponent from "../components/mapComponent";
 import Upload from "../components/upload.js";
-import { getMapInitPosition, getCatList, getCatThumbnailUrl } from "../channel/backendInfo";
+import { getMapInitPosition, getCatPhotoList, getCatThumbnailUrl } from "../channel/backendInfo";
 import styles from '../styles/CatsMap.module.css';
 
 // TODO: fix types
@@ -30,7 +30,7 @@ const createMarkers = (map: Map, cats: Array<Object>) => {
 
     const thumbnail = await getCatThumbnailUrl(cat.cat_id);
     const marker = new Marker({
-      position: new LatLng(cat.position.lat, cat.position.lng),
+      position: new LatLng(cat.lat, cat.lng),
       image: createMarkerImage(thumbnail, imgSize, {
         alt: 'cat-marker',
       }),
@@ -78,7 +78,7 @@ const Map: React.FC = () => {
       };
       const map = new kakao.maps.Map(kakaoMap.current, options);
 
-      const cats = await getCatList(map.getBounds());
+      const cats = await getCatPhotoList(map.getBounds());
       createMarkers(map, cats);
 
       // 맵의 중앙으로 이동
