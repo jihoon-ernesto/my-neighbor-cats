@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "storage": {
+      "CatsDb2": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}
