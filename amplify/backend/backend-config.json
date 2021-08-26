@@ -1,1 +1,8 @@
-{}
+{
+  "storage": {
+    "CatsDb2": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    }
+  }
+}
