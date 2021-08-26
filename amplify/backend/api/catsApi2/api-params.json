@@ -1,0 +1,36 @@
+{
+    "paths": [
+        {
+            "name": "/",
+            "lambdaFunction": "lambdaForCats2",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/"
+        }
+    ],
+    "resourceName": "catsApi2",
+    "apiName": "catsApi2",
+    "functionArns": [
+        {
+            "lambdaFunction": "lambdaForCats2"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-myneighborcats2-dev-113908-authRole",
+        "unAuthRoleName": "amplify-myneighborcats2-dev-113908-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "lambdaForCats2",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "46a1b7af"
+}
