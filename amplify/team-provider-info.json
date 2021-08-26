@@ -15,7 +15,7 @@
       "function": {
         "lambdaForCats2": {
           "deploymentBucketName": "amplify-myneighborcats2-dev-113908-deployment",
-          "s3Key": "amplify-builds/lambdaForCats2-314a646f345555576652-build.zip"
+          "s3Key": "amplify-builds/lambdaForCats2-5932757a4e73356f6a70-build.zip"
         }
       }
     }
