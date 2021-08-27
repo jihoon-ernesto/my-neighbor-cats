@@ -108,15 +108,15 @@ def getThumbnailUrl(Item):
 def handler(event, context):
   # print("------\nReceived event: " + json.dumps(event, indent=2) + "\n-----\n")
 
-  httpMethod = event['httpMethod']
+  httpMethod = event.get('httpMethod')
   if httpMethod == 'OPTIONS' :
     return {
       'statusCode': 200,
       'headers': commonHeaders
     }
 
-  body = json.loads(event['body'])
-  operation = body['operation']
+  body = json.loads(event.get('body', '{}'))
+  operation = body.get('operation')
 
   operations = {
       'create': lambda x: createCat(**x),
