@@ -13,17 +13,19 @@ dynamo = boto3.resource('dynamodb').Table('CatsDb2-dev')
 
 def createCat(Item):
   data_type = 'info#' + Item['name']
+  cat_id = uuid.uuid4().hex
   response = dynamo.put_item(
     Item = {
-      'cat_id': uuid.uuid4().hex,
+      'cat_id': cat_id,
       'name': Item['name'],
       'data_type': data_type
     }
   )
+  # TODO: error handling by response
   return {
     'statusCode': 200,
     'headers': commonHeaders,
-    'body': response
+    'body': cat_id
   }
 
 def insertCatPhoto(Item):
@@ -41,7 +43,7 @@ def insertCatPhoto(Item):
   return {
     'statusCode': 200,
     'headers': commonHeaders,
-    'body': response
+    'body': json.dumps(response)
   }
 
 def getCatNameList():
@@ -120,7 +122,7 @@ def handler(event, context):
 
   operations = {
       'create': lambda x: createCat(**x),
-      'insert_photo': lambda x: insertCatPhoto(**x),
+      'insert-photo': lambda x: insertCatPhoto(**x),
       'photo-url': lambda x: getPhotoUrl(**x),
       'thumbnail-url': lambda x: getThumbnailUrl(**x),
       # 'update': lambda x: dynamo.update_item(**x),

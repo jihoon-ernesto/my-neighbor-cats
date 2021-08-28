@@ -121,10 +121,67 @@ const getMapInitPosition = async () => {
   };
 }
 
+const addNewCat = async (name, photoUrl) => {
+  console.log('add a new cat: ' + name + ', ' + photoUrl);
+
+  let newCatId = '';
+  try {
+    const resp = await fetch(API_URL, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'operation': 'create',
+        'payload': {
+          'Item': {
+            'name': name
+          }
+        }
+      }),
+      method: 'POST',
+    });
+    newCatId = await resp.text();
+  } catch (e) {
+    console.error(`Error in 'creat' for ${name}`, e);
+  }
+
+  if (!newCatId) {
+    return;
+  }
+
+  console.log('newCat created: id ' + JSON.stringify(newCatId));
+
+  try {
+    const resp = await fetch(API_URL, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'operation': 'insert-photo',
+        'payload': {
+          'Item': {
+            'cat_id': newCatId,
+            // TODO: position handling
+            'lat': 37.498004414546934,
+            'lng': 127.02770621963765,
+            'photo_url': photoUrl,
+            'thumbnail_url': '',
+          },
+        },
+      }),
+      method: 'POST',
+    });
+    newCatId = await resp.text();
+  } catch (e) {
+    console.error(`Error in 'insert-photo' for ${name}`, e);
+  }
+}
+
 export {
   getMapInitPosition,
   getCatNameList,
   getCatPhotoList,
   getCatPhotoUrl,
   getCatThumbnailUrl,
+  addNewCat,
 };

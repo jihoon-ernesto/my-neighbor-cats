@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import S3 from 'react-aws-s3';
+import { addNewCat } from "../channel/backendInfo";
 
 // source: https://medium.com/@steven_creates/uploading-files-to-s3-using-react-js-hooks-react-aws-s3-c4c0684f38b3
 
@@ -10,6 +11,7 @@ function Upload() {
     event.preventDefault();
     let file = fileInput.current.files[0];
     let newFileName = file.name;
+    const catName = event.target['cat-name'].value;
 
     const config = {
       bucketName: process.env.NEXT_PUBLIC_AWS_BUCKET_NAME,
@@ -24,18 +26,23 @@ function Upload() {
       .then(data => {
         console.log(data);
         if (data.status === 204) {
-          alert('upload success');
+          console.log('upload success - url: ' + data.location);
+          addNewCat(catName, data.location);
         } else {
           alert('upload failure');
         }
       });
   }
+
   return (
     <>
       <form className='upload-steps' onSubmit={handleClick}>
         <label>
-          Upload file:
+          Cat photo file:{' '}
           <input type='file' ref={fileInput} />
+          <br />
+          Cat name:{' '}
+          <input type='text' name='cat-name' />
         </label>
         <br />
         <button type='submit'>Upload</button>
