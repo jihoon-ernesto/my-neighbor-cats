@@ -1,6 +1,9 @@
 import json
 import boto3
 import uuid
+from GPSPhoto import gpsphoto
+import requests
+import os
 from boto3.dynamodb.conditions import Key
 
 commonHeaders = {
@@ -28,15 +31,36 @@ def createCat(Item):
     'body': cat_id
   }
 
+def downloadImage(url):
+  tmpFileName = '/tmp/image.tmp'
+  r = requests.get(url, allow_redirects=True)
+  f = open(tmpFileName, 'wb')
+  f.write(r.content)
+  f.close()
+  return tmpFileName
+
+def getGpsLocation(photoUrl):
+  tmpFile = downloadImage(photoUrl)
+  data = gpsphoto.getGPSData(tmpFile)
+  os.remove(tmpFile)
+
+  return {
+    'lat': data['Latitude'],
+    'lng': data['Longitude']
+  }
+
 def insertCatPhoto(Item):
   data_type = "position#" + uuid.uuid4().hex
+  photo_url = Item["photo_url"]
+  location = getGpsLocation(photo_url)
+
   response = dynamo.put_item(
     Item = {
       "cat_id": Item["cat_id"],
       "data_type": data_type,
-      "lat": str(Item["lat"]),
-      "lng": str(Item["lng"]),
-      "photo_url": Item["photo_url"],
+      "lat": str(location["lat"]),
+      "lng": str(location["lng"]),
+      "photo_url": photo_url,
       "thumbnail_url": Item["thumbnail_url"]
     }
   )

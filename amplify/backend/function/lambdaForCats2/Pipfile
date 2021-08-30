@@ -7,6 +7,11 @@ verify_ssl = true
 
 [packages]
 src = {editable = true, path = "./src"}
+gpsphoto = "*"
+requests = "*"
+boto3 = "*"
+exifread = "*"
+piexif = "*"
 
 [requires]
 python_version = "3.8"
