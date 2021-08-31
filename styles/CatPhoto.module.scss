@@ -1,0 +1,26 @@
+.loadingMsg {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+}
+
+.catNameBox {
+  position: absolute;
+  top: 30px;
+  z-index: 1;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > .catName {
+    color: brown;
+    background-color: white;
+    height: 40px;
+    padding: 20px;
+    font-size: larger;
+    display: flex;
+    align-items: center;
+  }
+}

@@ -1,3 +1,11 @@
 .mapPage img[alt='cat-marker'] {
   border-radius: 50%;
 }
+
+.mapPage p[alt='cat-name'] {
+  background-color: lightyellow;
+  color: brown;
+  margin: 0;
+  position: relative;
+  top: 25px;
+}

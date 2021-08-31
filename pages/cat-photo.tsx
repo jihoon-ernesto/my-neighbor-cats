@@ -1,14 +1,15 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { getCatPhotoUrl } from '../channel/backendInfo.js';
-import styles from '../styles/CatPhoto.module.css'
+import { getCatName, getCatPhotoUrl } from '../channel/backendInfo.js';
+import styles from '../styles/CatPhoto.module.scss';
 
 // TODO: fix type
 const Photo: any = () => {
 
   const router = useRouter();
   const [imageSrc, setImageSrc] = useState('');
+  const [catName, setCatName] = useState('');
 
   useEffect(() => {
     const { id } = router.query;
@@ -17,10 +18,15 @@ const Photo: any = () => {
     }
 
     const catId = Array.isArray(id) ? id[0] : id || '';
+
+    getCatName(catId)
+      .then((name: string) => {
+        setCatName(name);
+      });
+
     getCatPhotoUrl(catId)
-      .then((result: string) => {
-        setImageSrc(result);
-        console.log('id: ' + catId + ', photoUrl: ' + result);
+      .then((url: string) => {
+        setImageSrc(url);
       });
 
   }, [router.query]);
@@ -30,6 +36,14 @@ const Photo: any = () => {
       <p className={styles.loadingMsg}>
         Loading...
       </p>
+
+      {catName && (
+        <div className={styles.catNameBox}>
+          <p className={styles.catName}>
+            {catName}
+          </p>
+        </div>
+      )}
 
       {imageSrc && (
         <Image
