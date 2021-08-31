@@ -2,7 +2,7 @@ import Head from "next/head";
 import React, { useEffect } from "react";
 import MapComponent from "../components/mapComponent";
 import Upload from "../components/upload.js";
-import { getMapInitPosition, getCatPhotoList, getCatThumbnailUrl } from "../channel/backendInfo";
+import { getMapInitPosition, getCatPhotoList, getCatThumbnailUrl, getCatName } from "../channel/backendInfo";
 import styles from '../styles/CatsMap.module.css';
 
 // TODO: fix types
@@ -24,17 +24,28 @@ const createMarkers = (map: Map, cats: Array<Object>) => {
 
   const Marker = kakao.maps.Marker;
   const LatLng = kakao.maps.LatLng;
+  const CustomOverlay = kakao.maps.CustomOverlay;
 
   // TODO: fix type
   const markers = cats?.map(async (cat: any) => {
 
     const thumbnail = await getCatThumbnailUrl(cat.cat_id);
+    const position = new LatLng(cat.lat, cat.lng);
+    const catName = await getCatName(cat.cat_id);
+    const catNameElem = `<p alt='cat-name'>${catName}</p>`;
+
     const marker = new Marker({
-      position: new LatLng(cat.lat, cat.lng),
+      position,
       image: createMarkerImage(thumbnail, imgSize, {
         alt: 'cat-marker',
       }),
       map,
+    });
+    const customOverlay = new CustomOverlay({
+      map,
+      position,
+      content: catNameElem,
+      yAnchor: 1,
     });
 
     kakao.maps.event.addListener(marker, 'click', () => {

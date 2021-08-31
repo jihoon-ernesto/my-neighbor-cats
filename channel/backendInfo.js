@@ -31,6 +31,14 @@ const getCatNameList = async (mapBounds) => {
   return nameList;
 }
 
+const getCatName = async catId => {
+  // TODO: don't call getCatNameList every time
+  const nameList = await getCatNameList();
+
+  const cat = nameList.find(({cat_id}) => cat_id === catId);
+  return cat?.name;
+}
+
 const getCatPhotoList = async (mapBounds) => {
   // TODO: consider mapBounds - only the cats within the map area
   console.log(`getCatPhotoList with mapBounds of ${JSON.stringify(mapBounds)}`);
@@ -183,5 +191,6 @@ export {
   getCatPhotoList,
   getCatPhotoUrl,
   getCatThumbnailUrl,
+  getCatName,
   addNewCat,
 };
