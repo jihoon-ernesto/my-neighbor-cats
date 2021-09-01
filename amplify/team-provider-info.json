@@ -19,5 +19,26 @@
         }
       }
     }
+  },
+  "devjihoon": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-myneighborcats2-devjihoon-105350-authRole",
+      "UnauthRoleArn": "arn:aws:iam::057445248633:role/amplify-myneighborcats2-devjihoon-105350-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::057445248633:role/amplify-myneighborcats2-devjihoon-105350-authRole",
+      "Region": "ap-northeast-2",
+      "DeploymentBucketName": "amplify-myneighborcats2-devjihoon-105350-deployment",
+      "UnauthRoleName": "amplify-myneighborcats2-devjihoon-105350-unauthRole",
+      "StackName": "amplify-myneighborcats2-devjihoon-105350",
+      "StackId": "arn:aws:cloudformation:ap-northeast-2:057445248633:stack/amplify-myneighborcats2-devjihoon-105350/74733640-0ac7-11ec-ab7f-067cf7c47da2",
+      "AmplifyAppId": "deaeq1fnb1aqs"
+    },
+    "categories": {
+      "function": {
+        "lambdaForCats2": {
+          "deploymentBucketName": "amplify-myneighborcats2-devjihoon-105350-deployment",
+          "s3Key": "amplify-builds/lambdaForCats2-44302b6b787457453571-build.zip"
+        }
+      }
+    }
   }
 }

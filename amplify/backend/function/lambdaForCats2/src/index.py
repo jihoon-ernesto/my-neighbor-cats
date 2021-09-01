@@ -12,7 +12,7 @@ commonHeaders = {
   'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
 }
 
-dynamo = boto3.resource('dynamodb').Table('CatsDb2-dev')
+dynamo = boto3.resource('dynamodb').Table('CatsDb2-devjihoon')
 
 def createCat(Item):
   data_type = 'info#' + Item['name']
