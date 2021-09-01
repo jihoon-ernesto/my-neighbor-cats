@@ -12,7 +12,8 @@ commonHeaders = {
   'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
 }
 
-dynamo = boto3.resource('dynamodb').Table('CatsDb2-devjihoon')
+# use DB name from a predefined env vars for Lambda
+dynamo = boto3.resource('dynamodb').Table(os.environ['STORAGE_CATSDB2_NAME'])
 
 def createCat(Item):
   data_type = 'info#' + Item['name']
@@ -44,6 +45,9 @@ def getGpsLocation(photoUrl):
   data = gpsphoto.getGPSData(tmpFile)
   os.remove(tmpFile)
 
+  if 'Latitude' not in data or 'Longitude' not in data:
+    return {}
+
   return {
     'lat': data['Latitude'],
     'lng': data['Longitude']
@@ -53,6 +57,14 @@ def insertCatPhoto(Item):
   data_type = "position#" + uuid.uuid4().hex
   photo_url = Item["photo_url"]
   location = getGpsLocation(photo_url)
+
+  if location == {}:
+    # TODO: cleanup - delete the wrong file and DB item
+    return {
+      'statusCode': 400,
+      'headers': commonHeaders,
+      'body': json.dumps({ 'msg': 'no location info in the photo' })
+    }
 
   response = dynamo.put_item(
     Item = {

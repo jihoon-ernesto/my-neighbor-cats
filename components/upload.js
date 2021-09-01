@@ -23,11 +23,16 @@ function Upload() {
 
     const ReactS3Client = new S3(config);
     ReactS3Client.uploadFile(file, newFileName)
-      .then(data => {
+      .then(async data => {
         console.log(data);
         if (data.status === 204) {
           console.log('upload success - url: ' + data.location);
-          addNewCat(catName, data.location);
+
+          const result = await addNewCat(catName, data.location);
+          if (!result.ok) {
+            // TODO: show in a modal info box, instead of 'alert'
+            alert(result.msg);
+          }
         } else {
           alert('upload failure');
         }

@@ -154,7 +154,10 @@ const addNewCat = async (name, photoUrl) => {
   }
 
   if (!newCatId) {
-    return;
+    return {
+      ok: false,
+      msg: 'no cat id',
+    };
   }
 
   console.log('newCat created: id ' + JSON.stringify(newCatId));
@@ -169,20 +172,29 @@ const addNewCat = async (name, photoUrl) => {
         'payload': {
           'Item': {
             'cat_id': newCatId,
-            // TODO: position handling
-            'lat': 37.498004414546934,
-            'lng': 127.02770621963765,
             'photo_url': photoUrl,
+            // TODO: thumbnail_url handling
             'thumbnail_url': '',
           },
         },
       }),
       method: 'POST',
     });
-    newCatId = await resp.text();
+
+    if (!resp.ok) {
+      const respObj = await resp.json();
+      return {
+        ok: false,
+        msg: respObj.msg,
+      };
+    }
   } catch (e) {
     console.error(`Error in 'insert-photo' for ${name}`, e);
   }
+
+  return {
+    ok: true,
+  };
 }
 
 export {
