@@ -56,7 +56,7 @@ const Photo: any = () => {
 
       <button
         className={styles.back}
-        onClick={() => router.back()}
+        onClick={router.back}
         >
         ← Back to the map
       </button>

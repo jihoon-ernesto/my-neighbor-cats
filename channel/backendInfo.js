@@ -118,7 +118,7 @@ const getCatThumbnailUrl = async (catId) => {
 }
 
 const getRandomId = async () => {
-  const catList = await getCatNameList();  
+  const catList = await getCatPhotoList();
   const randomIndex = parseInt(catList.length * Math.random());
   const cat = catList[randomIndex];
 

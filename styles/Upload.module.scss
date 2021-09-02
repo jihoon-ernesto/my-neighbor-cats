@@ -1,0 +1,16 @@
+.uploadForm {
+  padding: 10px;
+  margin: 4px;
+  border: 1px solid brown;
+  border-radius: 10px;
+  position: fixed;
+  top: 40px;
+  z-index: 2;
+  background-color: #ffffffcc;
+
+  button {
+    margin-top: 2px;
+    margin-left: 10px;
+    height: 30px;
+  }
+}
