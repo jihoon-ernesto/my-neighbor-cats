@@ -202,6 +202,7 @@ const addNewCat = async (name, photoUrl) => {
 
   return {
     ok: true,
+    catId: newCatId,
   };
 }
 
