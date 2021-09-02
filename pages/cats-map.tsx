@@ -144,7 +144,7 @@ const Map: React.FC = () => {
         className={styles.showAnother}
         onClick={showAnotherCat}
       >
-        Show another cat
+        Show another 🐱
       </button>
       <MapComponent ref={kakaoMap} />
     </div>
