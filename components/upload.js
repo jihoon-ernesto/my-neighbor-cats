@@ -5,7 +5,7 @@ import styles from '../styles/Upload.module.scss';
 
 // source: https://medium.com/@steven_creates/uploading-files-to-s3-using-react-js-hooks-react-aws-s3-c4c0684f38b3
 
-function Upload() {
+function Upload({ pageReloader }) {
   const fileInput = useRef();
 
   const handleClick = event => {
@@ -42,9 +42,18 @@ function Upload() {
             // TODO: show in a modal info box, instead of 'alert'
             alert(result.msg);
           }
+          else if (result.ok && result.catId) {
+            alert('new cat added: ' + catName);
+            pageReloader(result.catId);
+          }
         } else {
           alert('upload failure');
         }
+      })
+      .finally(() => {
+        // clear form
+        fileInput.current.value = '';
+        event.target['cat-name'].value = '';
       });
   }
 
