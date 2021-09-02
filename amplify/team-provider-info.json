@@ -15,7 +15,11 @@
       "function": {
         "lambdaForCats2": {
           "deploymentBucketName": "amplify-myneighborcats2-dev-113908-deployment",
-          "s3Key": "amplify-builds/lambdaForCats2-44302b6b787457453571-build.zip"
+          "s3Key": "amplify-builds/lambdaForCats2-3834574137354d754c73-build.zip"
+        },
+        "lambdaForThumbnail": {
+          "deploymentBucketName": "amplify-myneighborcats2-dev-113908-deployment",
+          "s3Key": "amplify-builds/lambdaForThumbnail-2f43447a7434424a4866-build.zip"
         }
       }
     }
