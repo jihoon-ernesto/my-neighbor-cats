@@ -9,10 +9,5 @@
       ]
     }
   },
-  "lambdaLayers": [
-    {
-      "type": "ExternalLayer",
-      "arn": "arn:aws:lambda:ap-northeast-2:770693421928:layer:Klayers-python38-Pillow:12"
-    }
-  ]
+  "lambdaLayers": []
 }
