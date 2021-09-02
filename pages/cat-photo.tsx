@@ -55,16 +55,10 @@ const Photo: any = () => {
       )}
 
       <button
-        onClick={() => window.history.back()}
-        style={{
-          width: 80,
-          height: 40,
-          fontSize: 14,
-          position: 'absolute',
-          cursor: 'pointer',
-        }}
+        className={styles.back}
+        onClick={() => router.back()}
         >
-        ← Back
+        ← Back to the map
       </button>
     </>
   );

@@ -1,9 +1,10 @@
 import Head from "next/head";
+import { useRouter } from 'next/router';
 import React, { useEffect } from "react";
 import MapComponent from "../components/mapComponent";
 import Upload from "../components/upload.js";
-import { getMapInitPosition, getCatPhotoList, getCatThumbnailUrl, getCatName } from "../channel/backendInfo";
-import styles from '../styles/CatsMap.module.css';
+import { getCatPosition, getCatPhotoList, getCatThumbnailUrl, getCatName, getRandomId } from "../channel/backendInfo";
+import styles from '../styles/CatsMap.module.scss';
 
 // TODO: fix types
 type Map = {};
@@ -64,12 +65,18 @@ const createMarkers = (map: Map, cats: Array<Object>) => {
 // https://gingerkang.tistory.com/65
 const Map: React.FC = () => {
   const kakaoMap = React.useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const { id } = router.query;
+  console.log('set position for cat id: ' + id);
 
   useEffect(() => {
     const { kakao } = window as any;
 
     if (!kakao) {
       console.error('kakao map api not loaded!');
+      return;
+    }
+    if (!id) {
       return;
     }
 
@@ -80,7 +87,7 @@ const Map: React.FC = () => {
       }
 
       // TODO: use the current location
-      const initPos = await getMapInitPosition();
+      const initPos = await getCatPosition(id);
       const coords = new kakao.maps.LatLng(initPos.lat, initPos.lng); // 지도의 중심좌표
 
       const options = {
@@ -112,7 +119,16 @@ const Map: React.FC = () => {
         kakao.maps.ControlPosition.RIGHT
       );
     })
-  }, [kakaoMap]);
+  }, [kakaoMap, id]);
+
+  const showAnotherCat = async () => {
+    let anotherId = id;
+    while (anotherId === id) {
+      anotherId = await getRandomId();
+    }
+
+    router.push(`/cats-map?id=${anotherId}`);
+  }
 
   return (
     <div
@@ -124,6 +140,12 @@ const Map: React.FC = () => {
         <link rel="icon" href="/cat-face-256.png" />
       </Head>
       <Upload />
+      <button
+        className={styles.showAnother}
+        onClick={showAnotherCat}
+      >
+        Show another cat
+      </button>
       <MapComponent ref={kakaoMap} />
     </div>
   );

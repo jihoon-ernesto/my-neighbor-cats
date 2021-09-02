@@ -2,8 +2,9 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
+import { getRandomId } from "../channel/backendInfo";
 import {
   AuthTokens,
   useAuth,
@@ -23,6 +24,15 @@ export const getServerSideProps: GetServerSideProps<{
 export default function Home(props: { initialAuth: AuthTokens }) {
   const auth = useAuth(props.initialAuth);
   const { login, logout } = useAuthFunctions();
+
+  const [mapPage, setMapPage] = useState('');
+
+  useEffect(() => {
+    getRandomId()
+      .then((id: string) => {
+        setMapPage(`/cats-map?id=${id}`);
+      })
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -65,7 +75,7 @@ export default function Home(props: { initialAuth: AuthTokens }) {
           */}
 
           <Link
-            href="/cats-map"
+            href={mapPage}
           >
             <div className={styles.card}>
               <h2>고양이 지도 &rarr;</h2>

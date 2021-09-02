@@ -10,7 +10,7 @@ const API_URL = process.env.NEXT_PUBLIC_LAMBDA_API_URL;
  */
 const getCatNameList = async (mapBounds) => {
   // TODO: consider mapBounds - only the cats within the map area
-  console.log(`getCatNameList with mapBounds of ${JSON.stringify(mapBounds)}`);
+  // console.log(`getCatNameList with mapBounds of ${JSON.stringify(mapBounds)}`);
 
   let nameList = [];
   try {
@@ -41,7 +41,7 @@ const getCatName = async catId => {
 
 const getCatPhotoList = async (mapBounds) => {
   // TODO: consider mapBounds - only the cats within the map area
-  console.log(`getCatPhotoList with mapBounds of ${JSON.stringify(mapBounds)}`);
+  // console.log(`getCatPhotoList with mapBounds of ${JSON.stringify(mapBounds)}`);
 
   let photoList = [];
   try {
@@ -117,15 +117,23 @@ const getCatThumbnailUrl = async (catId) => {
   return url || '/question-mark.png';
 }
 
-// TODO: use current user location
-const getMapInitPosition = async () => {
-  const catList = await getCatPhotoList();
+const getRandomId = async () => {
+  const catList = await getCatNameList();  
   const randomIndex = parseInt(catList.length * Math.random());
-  const catInfo = catList[randomIndex];
+  const cat = catList[randomIndex];
 
+  return cat?.cat_id;
+}
+
+// TODO: make a dedicated API
+const getCatPosition = async catId => {
+  const catPhotoList = await getCatPhotoList();
+  const cat = catPhotoList.find(({cat_id}) => cat_id === catId);
+
+  // TODO: change the default value
   return {
-    lat: catInfo?.lat || 33.450701,
-    lng: catInfo?.lng || 126.570667,
+    lat: cat?.lat || 33.450701,
+    lng: cat?.lng || 126.570667,
   };
 }
 
@@ -198,7 +206,8 @@ const addNewCat = async (name, photoUrl) => {
 }
 
 export {
-  getMapInitPosition,
+  getRandomId,
+  getCatPosition,
   getCatNameList,
   getCatPhotoList,
   getCatPhotoUrl,
