@@ -114,7 +114,15 @@ const getCatThumbnailUrl = async (catId) => {
     console.error(`Error in fetching thumbnail-url for ${catId}`, e);
   }
 
-  return url || '/question-mark.png';
+  if (url) {
+    return url;
+  }
+
+  // TODO: remove this workaround code after implementing DB update properly
+  const photoUrl = await getCatPhotoUrl(catId);
+  return photoUrl
+    .replace('my-cats-bucket', 'my-cats-bucket-resized')
+    .replace('.com/', '.com/resized-');
 }
 
 const getRandomId = async () => {
