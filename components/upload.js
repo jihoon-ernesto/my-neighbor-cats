@@ -5,7 +5,7 @@ import styles from '../styles/Upload.module.scss';
 
 // source: https://medium.com/@steven_creates/uploading-files-to-s3-using-react-js-hooks-react-aws-s3-c4c0684f38b3
 
-function Upload({ pageReloader }) {
+function Upload({ pageReloader, enable }) {
   const fileInput = useRef();
 
   const handleClick = event => {
@@ -62,12 +62,12 @@ function Upload({ pageReloader }) {
       <form className={styles.uploadForm} onSubmit={handleClick}>
         <label>
           Cat photo:{' '}
-          <input type='file' ref={fileInput} />
+          <input type='file' ref={fileInput} disabled={!enable} />
           <br />
           Cat name:{' '}
-          <input type='text' name='cat-name' />
+          <input type='text' name='cat-name' disabled={!enable} />
         </label>
-        <button type='submit'>Add a new 🐱</button>
+        <button type='submit' disabled={!enable}>Add a new 🐱</button>
       </form>
     </>
   );

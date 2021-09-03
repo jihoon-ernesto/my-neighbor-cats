@@ -66,7 +66,7 @@ const createMarkers = (map: Map, cats: Array<Object>) => {
 const Map: React.FC = () => {
   const kakaoMap = React.useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const { id } = router.query;
+  const { id, user } = router.query;
   console.log('set position for cat id: ' + id);
 
   useEffect(() => {
@@ -135,6 +135,7 @@ const Map: React.FC = () => {
     router.push(`/cats-map?id=${catId}`);
   }
 
+  const uploadBoxClass = [styles.uploadBox, user ? '' : styles.dimmed].join(' ');
   return (
     <div
       className={styles.mapPage}
@@ -144,7 +145,11 @@ const Map: React.FC = () => {
         <meta name="description" content="AWS ABP 2021 - 우리 동네 고양이" />
         <link rel="icon" href="/cat-face-256.png" />
       </Head>
-      <Upload pageReloader={reloadMap} />
+
+      <div className={uploadBoxClass}>
+        <Upload pageReloader={reloadMap} enable={!!user} />
+      </div>
+
       <button
         className={styles.showAnother}
         onClick={showAnotherCat}
