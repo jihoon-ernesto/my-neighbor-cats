@@ -19,7 +19,7 @@
         },
         "lambdaForThumbnail": {
           "deploymentBucketName": "amplify-myneighborcats2-dev-113908-deployment",
-          "s3Key": "amplify-builds/lambdaForThumbnail-75696551435671723756-build.zip"
+          "s3Key": "amplify-builds/lambdaForThumbnail-675651502f6d446a4651-build.zip"
         }
       }
     }
