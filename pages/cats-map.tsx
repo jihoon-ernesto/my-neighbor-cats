@@ -127,12 +127,7 @@ const Map: React.FC = () => {
       anotherId = await getRandomId();
     }
 
-    reloadMap(anotherId);
-  }
-
-  // TODO: fix type
-  const reloadMap = (catId: any) => {
-    router.push(`/cats-map?id=${catId}`);
+    router.push(`/cats-map?id=${anotherId}`);
   }
 
   return (
@@ -144,12 +139,12 @@ const Map: React.FC = () => {
         <meta name="description" content="AWS ABP 2021 - 우리 동네 고양이" />
         <link rel="icon" href="/cat-face-256.png" />
       </Head>
-      <Upload pageReloader={reloadMap} />
+      <Upload />
       <button
         className={styles.showAnother}
         onClick={showAnotherCat}
       >
-        Show another 🐱
+        Show another cat
       </button>
       <MapComponent ref={kakaoMap} />
     </div>

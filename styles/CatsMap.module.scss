@@ -12,13 +12,12 @@
   }
   
   .showAnother {
-    width: 160px;
+    width: 140px;
     height: 40px;
     font-size: 14px;
-    position: fixed;
-    right: 6px;
-    bottom: 6px;
-    cursor: pointer;
-    z-index: 2;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: 'pointer';
   }  
 }
