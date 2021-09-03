@@ -2,7 +2,7 @@
   img[alt='cat-marker'] {
     border-radius: 50%;
   }
-  
+
   p[alt='cat-name'] {
     background-color: lightyellow;
     color: brown;
@@ -10,14 +10,15 @@
     position: relative;
     top: 25px;
   }
-  
+
   .showAnother {
-    width: 140px;
+    width: 160px;
     height: 40px;
     font-size: 14px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    cursor: 'pointer';
-  }  
+    position: fixed;
+    right: 6px;
+    bottom: 6px;
+    cursor: pointer;
+    z-index: 2;
+  }
 }

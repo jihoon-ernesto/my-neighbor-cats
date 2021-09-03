@@ -33,10 +33,14 @@ exports.handler = async (event) => {
         return;
     }  
 
-    const width  = 200;
+    const size = 200;
 
     try { 
-        var buffer = await sharp(origimage.Body).resize(width).toBuffer();
+        const info = await sharp(origimage.Body).metadata();
+        const left = info.width > size ? (info.width - size) / 2 : 0;
+        const top = info.height > size ? (info.height - size) / 2 : 0;
+
+        var buffer = await sharp(origimage.Body).extract({left:left, top:top, width:size, height:size}).toBuffer();
             
     } catch (error) {
         console.log(error);
