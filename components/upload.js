@@ -5,7 +5,7 @@ import styles from '../styles/Upload.module.scss';
 
 // source: https://medium.com/@steven_creates/uploading-files-to-s3-using-react-js-hooks-react-aws-s3-c4c0684f38b3
 
-function Upload({ pageReloader, enable }) {
+function Upload({ pageReloader, username }) {
   const fileInput = useRef();
 
   const handleClick = event => {
@@ -37,14 +37,14 @@ function Upload({ pageReloader, enable }) {
         if (data.status === 204) {
           console.log('upload success - url: ' + data.location);
 
-          const result = await addNewCat(catName, data.location);
+          const result = await addNewCat(catName, data.location, username);
           if (!result.ok) {
             // TODO: show in a modal info box, instead of 'alert'
             alert(result.msg);
           }
           else if (result.ok && result.catId) {
             alert('new cat added: ' + catName);
-            pageReloader(result.catId);
+            pageReloader(result.catId, username);
           }
         } else {
           alert('upload failure');
@@ -62,12 +62,12 @@ function Upload({ pageReloader, enable }) {
       <form className={styles.uploadForm} onSubmit={handleClick}>
         <label>
           Cat photo:{' '}
-          <input type='file' ref={fileInput} disabled={!enable} />
+          <input type='file' ref={fileInput} disabled={!username} />
           <br />
           Cat name:{' '}
-          <input type='text' name='cat-name' disabled={!enable} />
+          <input type='text' name='cat-name' disabled={!username} />
         </label>
-        <button type='submit' disabled={!enable}>Add a new 🐱</button>
+        <button type='submit' disabled={!username}>Add a new 🐱</button>
       </form>
     </>
   );

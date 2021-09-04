@@ -50,7 +50,7 @@ const createMarkers = (map: Map, cats: Array<Object>) => {
     });
 
     kakao.maps.event.addListener(marker, 'click', () => {
-      window.location.href = `/cat-photo?id=${cat.cat_id}`;
+      window.location.href = `/cat-photo?id=${cat.cat_id}&uploader=${cat.uploader}`;
     });
 
     return marker;
@@ -66,7 +66,7 @@ const createMarkers = (map: Map, cats: Array<Object>) => {
 const Map: React.FC = () => {
   const kakaoMap = React.useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const { id, user } = router.query;
+  const { id, user: username } = router.query;
   console.log('set position for cat id: ' + id);
 
   useEffect(() => {
@@ -127,15 +127,15 @@ const Map: React.FC = () => {
       anotherId = await getRandomId();
     }
 
-    reloadMap(anotherId);
+    reloadMap(anotherId, username);
   }
 
   // TODO: fix type
-  const reloadMap = (catId: any) => {
-    router.push(`/cats-map?id=${catId}`);
+  const reloadMap = (catId: any, username: any) => {
+    router.push(`/cats-map?id=${catId}` + (username ? `&user=${username}` : ``));
   }
 
-  const uploadBoxClass = [styles.uploadBox, user ? '' : styles.dimmed].join(' ');
+  const uploadBoxClass = [styles.uploadBox, username ? '' : styles.dimmed].join(' ');
   return (
     <div
       className={styles.mapPage}
@@ -147,7 +147,7 @@ const Map: React.FC = () => {
       </Head>
 
       <div className={uploadBoxClass}>
-        <Upload pageReloader={reloadMap} enable={!!user} />
+        <Upload pageReloader={reloadMap} username={username} />
       </div>
 
       <button

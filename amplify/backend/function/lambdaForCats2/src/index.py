@@ -72,6 +72,7 @@ def insertCatPhoto(Item):
       "data_type": data_type,
       "lat": str(location["lat"]),
       "lng": str(location["lng"]),
+      "uploader": Item["uploader"],
       "photo_url": photo_url,
       "thumbnail_url": Item["thumbnail_url"]
     }
