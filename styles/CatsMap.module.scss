@@ -21,4 +21,18 @@
     cursor: pointer;
     z-index: 2;
   }
+
+  .uploadBox {
+    position: fixed;
+    top: 40px;
+    left: 6px;
+    z-index: 2;
+    background-color: #ffffffcc;
+    border-radius: 10px;
+
+    &.dimmed {
+      opacity: 0.6;
+      background-color: #ffffff33;
+    }
+  }
 }

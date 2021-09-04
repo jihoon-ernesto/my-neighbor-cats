@@ -3,10 +3,8 @@
   margin: 4px;
   border: 1px solid brown;
   border-radius: 10px;
-  position: fixed;
-  top: 40px;
-  z-index: 2;
-  background-color: #ffffffcc;
+  background-color: inherit;
+  opacity: inherit;
 
   button {
     margin-top: 2px;

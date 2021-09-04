@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
 import React, { useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import { getRandomId } from "../channel/backendInfo";
@@ -24,13 +24,14 @@ export const getServerSideProps: GetServerSideProps<{
 export default function Home(props: { initialAuth: AuthTokens }) {
   const auth = useAuth(props.initialAuth);
   const { login, logout } = useAuthFunctions();
+  const [catId, setCatId] = useState('');
 
-  const [mapPage, setMapPage] = useState('');
+  console.log('auth username: ' + auth?.accessTokenData?.username);
 
   useEffect(() => {
     getRandomId()
       .then((id: string) => {
-        setMapPage(`/cats-map?id=${id}`);
+        setCatId(id);
       })
   }, []);
 
@@ -48,23 +49,20 @@ export default function Home(props: { initialAuth: AuthTokens }) {
           🐈 🐈
         </h1>
 
-        <p className={styles.description}>
-          (여기 대충 앱 소개)
-        </p>
-
-        <React.Fragment>
-          {auth ? (
-            <button type="button" onClick={() => logout()}>
+        {auth ? (
+          <div className={styles.signedIn}>
+            <p>Welcome {auth.accessTokenData?.username}</p>
+            <button onClick={logout}>
               sign out
             </button>
-          ) : (
-            <React.Fragment>
-              <button type="button" onClick={() => login()}>
-                sign in
-              </button>
-            </React.Fragment>
-          )}
-        </React.Fragment>
+          </div>
+        ) : (
+          <div className={styles.signedOut}>
+            <button onClick={login}>
+              sign in
+            </button>
+          </div>
+        )}
 
         <div className={styles.grid}>
           {/*
@@ -74,8 +72,15 @@ export default function Home(props: { initialAuth: AuthTokens }) {
           </a>
           */}
 
+          {/* TODO: find a better way to pass the auth info to another page  */}
           <Link
-            href={mapPage}
+            href={{
+              pathname: '/cats-map',
+              query: {
+                id: catId,
+                user: auth?.accessTokenData?.username
+              },
+            }}
           >
             <div className={styles.card}>
               <h2>고양이 지도 &rarr;</h2>
