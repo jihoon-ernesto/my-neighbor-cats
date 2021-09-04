@@ -76,9 +76,11 @@ export default function Home(props: { initialAuth: AuthTokens }) {
           <Link
             href={{
               pathname: '/cats-map',
-              query: {
+              query: auth ? {
                 id: catId,
-                user: auth?.accessTokenData?.username
+                user: auth.accessTokenData?.username
+              } : {
+                id: catId,
               },
             }}
           >

@@ -10,25 +10,29 @@ const Photo: any = () => {
   const router = useRouter();
   const [imageSrc, setImageSrc] = useState('');
   const [catName, setCatName] = useState('');
+  const [uploaderName, setUploaderName] = useState('');
 
   useEffect(() => {
-    const { id } = router.query;
+    let { id, uploader } = router.query;
     if (!id) {
       return;
     }
 
-    const catId = Array.isArray(id) ? id[0] : id || '';
+    // TODO: fix these stupid lines
+    id = Array.isArray(id) ? id[0] : id || '';
+    uploader = Array.isArray(uploader) ? uploader[0] : uploader || '';
 
-    getCatName(catId)
+    getCatName(id)
       .then((name: string) => {
         setCatName(name);
       });
 
-    getCatPhotoUrl(catId)
+    getCatPhotoUrl(id)
       .then((url: string) => {
         setImageSrc(url);
       });
 
+    setUploaderName(uploader);
   }, [router.query]);
 
   return (
@@ -41,6 +45,9 @@ const Photo: any = () => {
         <div className={styles.catNameBox}>
           <p className={styles.catName}>
             {catName}
+          </p>
+          <p className={styles.uploader}>
+            (by {uploaderName})
           </p>
         </div>
       )}

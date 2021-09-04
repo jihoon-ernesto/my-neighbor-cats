@@ -40,7 +40,7 @@
       "function": {
         "lambdaForCats2": {
           "deploymentBucketName": "amplify-myneighborcats2-devjihoon-105350-deployment",
-          "s3Key": "amplify-builds/lambdaForCats2-6249395654656c315632-build.zip"
+          "s3Key": "amplify-builds/lambdaForCats2-5234492b416d2f637968-build.zip"
         },
         "lambdaForThumbnail": {
           "deploymentBucketName": "amplify-myneighborcats2-devjihoon-105350-deployment",

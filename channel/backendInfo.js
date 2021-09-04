@@ -145,8 +145,8 @@ const getCatPosition = async catId => {
   };
 }
 
-const addNewCat = async (name, photoUrl) => {
-  console.log('add a new cat: ' + name + ', ' + photoUrl);
+const addNewCat = async (catName, photoUrl, username) => {
+  console.log('add a new cat: ' + catName + ', ' + photoUrl);
 
   let newCatId = '';
   try {
@@ -158,7 +158,7 @@ const addNewCat = async (name, photoUrl) => {
         'operation': 'create',
         'payload': {
           'Item': {
-            'name': name
+            'name': catName
           }
         }
       }),
@@ -166,7 +166,7 @@ const addNewCat = async (name, photoUrl) => {
     });
     newCatId = await resp.text();
   } catch (e) {
-    console.error(`Error in 'creat' for ${name}`, e);
+    console.error(`Error in 'creat' for ${catName}`, e);
   }
 
   if (!newCatId) {
@@ -188,6 +188,7 @@ const addNewCat = async (name, photoUrl) => {
         'payload': {
           'Item': {
             'cat_id': newCatId,
+            'uploader': username,
             'photo_url': photoUrl,
             // TODO: thumbnail_url handling
             'thumbnail_url': '',
