@@ -3,26 +3,26 @@
 
 
 "@aws-amplify/auth@^4.3.0":
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/auth/-/auth-4.3.0.tgz#fe0eadfb240c2fd0fcf83fb391af1e1f90e705c5"
-  integrity sha512-9z6m0HejbpZ1RyGhTPb/AkABsYfUg8aupKzXmKu1OtvxN24Yp09sv61lzEmB54XX1g+QPdci9xvA5yDiIaJp+g==
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/auth/-/auth-4.3.2.tgz#14e24c4019a244745d266b780f6d79a6618bcd32"
+  integrity sha512-4Tmu/v5S1H1z7QjpbCH8LOutw8SltCZpZD2KCVFgq4t6GqZIG4vo5hBe6085UjvMO4PsVgRDDVdJJoGFdX/owA==
   dependencies:
-    "@aws-amplify/cache" "4.0.12"
-    "@aws-amplify/core" "4.2.4"
+    "@aws-amplify/cache" "4.0.14"
+    "@aws-amplify/core" "4.2.6"
     amazon-cognito-identity-js "5.1.0"
     crypto-js "^4.1.1"
 
-"@aws-amplify/cache@4.0.12":
-  version "4.0.12"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/cache/-/cache-4.0.12.tgz#3b2727bef6fa44e3f4e5f1c7a6e6611823b80a14"
-  integrity sha512-d1rS9s1zyBJ+L8pBhuTNlW2RzbXtHmHlx1heRTFkaSj6JpDdpelqY07RCKA+JXHZy9u6/3GvGfJKK+B2CSXH5w==
+"@aws-amplify/cache@4.0.14":
+  version "4.0.14"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/cache/-/cache-4.0.14.tgz#031654eb1d44c86bf3bbea1920e20c6d1ba5012d"
+  integrity sha512-b3AFdqNgs5aYhGg54mq4iudCk8WEpbcZU6wio7Y28Yw0b5RxEiRW/jphlsE7yZBDXPGSktCSyg6znFO2h1r8tg==
   dependencies:
-    "@aws-amplify/core" "4.2.4"
+    "@aws-amplify/core" "4.2.6"
 
-"@aws-amplify/core@4.2.4", "@aws-amplify/core@^4.2.4":
-  version "4.2.4"
-  resolved "https://registry.yarnpkg.com/@aws-amplify/core/-/core-4.2.4.tgz#f389ddddaa78f44eff11ee631508999d38870a3e"
-  integrity sha512-8ZvN/3gJxEZVZbwQpSh3G+7J/cQ5ctzkYqAQeyvvNOGssWtmhs8A7gwmmHwrebb+HFGwa/LT0oh/zpM5vctC6w==
+"@aws-amplify/core@4.2.6", "@aws-amplify/core@^4.2.4":
+  version "4.2.6"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/core/-/core-4.2.6.tgz#59c311f6129bb84a6bac7c9da4982e9b3b0e3afe"
+  integrity sha512-9CL4+uPSGNu9aWW4l0abofoYIypt+tnzv8jr04HD51bjH7C2iTI5sK69aG/kdXhy6G5uxvqeLwlZbwR5dEclYQ==
   dependencies:
     "@aws-crypto/sha256-js" "1.0.0-alpha.0"
     "@aws-sdk/client-cloudwatch-logs" "3.6.1"
@@ -756,9 +756,9 @@
   integrity sha512-bLL69sKtd25w7p1nvg9pigE4gtKVpGTPojBFLMkGHXuUgap2sLqQt2qUnqmVCDfzGUL0DRNZP+1prIZJbMeAXg==
 
 "@types/node@^16.7.1":
-  version "16.7.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.7.1.tgz#c6b9198178da504dfca1fd0be9b2e1002f1586f0"
-  integrity sha512-ncRdc45SoYJ2H4eWU9ReDfp3vtFqDYhjOsKlFFUDEn8V1Bgr2RjYal8YT5byfadWIRluhPFU6JiDOl0H6Sl87A==
+  version "16.7.10"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.7.10.tgz#7aa732cc47341c12a16b7d562f519c2383b6d4fc"
+  integrity sha512-S63Dlv4zIPb8x6MMTgDq5WWRJQe56iBEY0O3SOFA9JrRienkOVDXSXBjjJw6HTNQYSE2JI6GMCR6LVbIMHJVvA==
 
 "@types/prop-types@*":
   version "15.7.4"
@@ -3315,7 +3315,7 @@ react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-native-get-random-values@^1.4.0:
+react-native-get-random-values@1.7.0, react-native-get-random-values@^1.4.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/react-native-get-random-values/-/react-native-get-random-values-1.7.0.tgz#86d9d1960828b606392dba4540bf760605448530"
   integrity sha512-zDhmpWUekGRFb9I+MQkxllHcqXN9HBSsgPwBQfrZ1KZYpzDspWLZ6/yLMMZrtq4pVqNR7C7N96L3SuLpXv1nhQ==
@@ -3933,9 +3933,9 @@ type-fest@^0.7.1:
   integrity sha512-Ne2YiiGN8bmrmJJEuTWTLJR32nh/JdL1+PSicowtNb0WFpn59GK8/lfD61bVtzguz7b3PBt74nxpv/Pw5po5Rg==
 
 typescript@^4.3.5:
-  version "4.3.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.3.5.tgz#4d1c37cc16e893973c45a06886b7113234f119f4"
-  integrity sha512-DqQgihaQ9cUrskJo9kIyW/+g0Vxsk8cDtZ52a3NGh0YNTfpUSArXSohyUGnvbPazEPLu398C0UxmKSOrPumUzA==
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.4.2.tgz#6d618640d430e3569a1dfb44f7d7e600ced3ee86"
+  integrity sha512-gzP+t5W4hdy4c+68bfcv0t400HVJMMd2+H9B7gae1nQlBzCqvrXX+6GL/b3GAgyTH966pzrZ70/fRjwAtZksSQ==
 
 unbox-primitive@^1.0.1:
   version "1.0.1"
