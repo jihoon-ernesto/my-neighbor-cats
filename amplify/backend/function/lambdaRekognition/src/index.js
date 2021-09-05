@@ -43,8 +43,10 @@ function detectLabels(bucket, key) {
   }
 
 exports.handler = async (event) => {
-  
-  const s3Record = event.Records[0].s3;
+  // handle SNS topic event: 'cat-photo-uploaded'
+  const snsMsgObj = JSON.parse(event.Records[0].Sns.Message);
+
+  const s3Record = snsMsgObj.Records[0].s3;
   const bucket = s3Record.bucket.name;
   const key = s3Record.object.key;
 
