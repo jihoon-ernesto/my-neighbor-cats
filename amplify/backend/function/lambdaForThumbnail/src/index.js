@@ -5,8 +5,12 @@ const s3 = new AWS.S3({ signatureVersion: 'v4' });
 const sharp = require('sharp');
 
 exports.handler = async (event) => {
-    const srcBucket = event.Records[0].s3.bucket.name;
-    const srcKey = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, ' '));
+    // handle SNS topic event: 'cat-photo-uploaded'
+    const snsMsgObj = JSON.parse(event.Records[0].Sns.Message);
+    const s3Record = snsMsgObj.Records[0].s3;
+
+    const srcBucket = s3Record.bucket.name;
+    const srcKey = decodeURIComponent(s3Record.object.key.replace(/\+/g, ' '));
 
     const thumbBucket = srcBucket + '-resized';
     const thumbKey = 'resized-' + srcKey;
