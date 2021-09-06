@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { getCatName, getCatPhotoUrl } from '../channel/backendInfo.js';
+import { getCatName, getCatPhotoUrl, isCatPhoto } from '../channel/backendInfo.js';
 import styles from '../styles/CatPhoto.module.scss';
 
 // TODO: fix type
@@ -11,6 +11,7 @@ const Photo: any = () => {
   const [imageSrc, setImageSrc] = useState('');
   const [catName, setCatName] = useState('');
   const [uploaderName, setUploaderName] = useState('');
+  const [isCat, setIsCat] = useState(false);
 
   useEffect(() => {
     let { id, uploader } = router.query;
@@ -31,6 +32,11 @@ const Photo: any = () => {
       .then((url: string) => {
         setImageSrc(url);
       });
+
+    isCatPhoto(id)
+      .then((isCat: boolean) => {
+        setIsCat(isCat);
+      })
 
     setUploaderName(uploader);
   }, [router.query]);
@@ -60,6 +66,13 @@ const Photo: any = () => {
           objectFit="contain"
         />
       )}
+
+      <p className={styles.isCat}>
+        cat detector:
+        <span className={isCat ? styles.msgPositive : styles.msgNegative}>
+          {isCat ? `"This is a cat."` : `"This is NOT a cat!"`}
+        </span>
+      </p>
 
       <button
         className={styles.back}

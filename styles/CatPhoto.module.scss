@@ -33,6 +33,23 @@
   }
 }
 
+.isCat {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  padding: 10px;
+  background-color: whitesmoke;
+
+  .msgPositive {
+    margin-left: 20px;
+    color: blue;
+  }
+  .msgNegative {
+    margin-left: 20px;
+    color: red;
+  }
+}
+
 .back {
   width: 140px;
   height: 40px;

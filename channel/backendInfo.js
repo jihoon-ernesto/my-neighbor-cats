@@ -145,6 +145,14 @@ const getCatPosition = async catId => {
   };
 }
 
+// TODO: make a dedicated API
+const isCatPhoto = async catId => {
+  const catPhotoList = await getCatPhotoList();
+  const cat = catPhotoList.find(({cat_id}) => cat_id === catId);
+
+  return cat ? cat.is_cat : undefined;
+}
+
 const addNewCat = async (catName, photoUrl, username) => {
   console.log('add a new cat: ' + catName + ', ' + photoUrl);
 
@@ -223,5 +231,6 @@ export {
   getCatPhotoUrl,
   getCatThumbnailUrl,
   getCatName,
+  isCatPhoto,
   addNewCat,
 };
