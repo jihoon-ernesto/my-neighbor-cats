@@ -1,5 +1,9 @@
 {
-  "key1": "value1",
-  "key2": "value2",
-  "key3": "value3"
+  "Records": [
+    {
+      "Sns": {
+        "Message": "{\"Records\":[{\"eventVersion\":\"2.1\",\"eventSource\":\"aws:s3\",\"awsRegion\":\"ap-northeast-2\",\"eventTime\":\"2021-09-06T05:54:47.294Z\",\"eventName\":\"ObjectCreated:Post\",\"userIdentity\":{\"principalId\":\"AWS:AIDAQ2YAA5Z4ZJUOVKIL7\"},\"requestParameters\":{\"sourceIPAddress\":\"175.197.27.19\"},\"responseElements\":{\"x-amz-request-id\":\"Z96W2CKQE02E3DV8\",\"x-amz-id-2\":\"HxwFYP7IHQBWzcuosnuPSBIj2TSwJClRFKr+mtmvI2uW/xJJRYDIBfPFO/jzWS3/x5K9uCROTD5U/S4SJrcbBq9k/Fm9SAJa\"},\"s3\":{\"s3SchemaVersion\":\"1.0\",\"configurationId\":\"new-file-in-cats-bucket\",\"bucket\":{\"name\":\"my-cats-bucket\",\"ownerIdentity\":{\"principalId\":\"A38U2VLZAESKFT\"},\"arn\":\"arn:aws:s3:::my-cats-bucket\"},\"object\":{\"key\":\"2651524C-1D19-4EE9-B0F9-2E28F6B600BF.JPG\",\"size\":641769,\"eTag\":\"f55edbc4124b8affc3e1c9bb783bedf8\",\"versionId\":\"xXbzJ7Y7MYbw1afbbumHium5h6rmrQEA\",\"sequencer\":\"006135AD2859932396\"}}}]}"
+      }
+    }
+  ]
 }
