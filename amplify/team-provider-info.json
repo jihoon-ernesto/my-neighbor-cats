@@ -52,7 +52,7 @@
         },
         "lambdaRekognition": {
           "deploymentBucketName": "amplify-myneighborcats2-devjihoon-105350-deployment",
-          "s3Key": "amplify-builds/lambdaRekognition-4f706f3433477a455651-build.zip"
+          "s3Key": "amplify-builds/lambdaRekognition-45575231645479424f46-build.zip"
         }
       }
     }

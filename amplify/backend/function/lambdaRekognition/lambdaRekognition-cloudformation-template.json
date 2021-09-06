@@ -18,6 +18,18 @@
     },
     "S3UserfilesBucketName": {
       "Type": "String"
+    },
+    "storageCatsDb2Name": {
+      "Type": "String",
+      "Default": "storageCatsDb2Name"
+    },
+    "storageCatsDb2Arn": {
+      "Type": "String",
+      "Default": "storageCatsDb2Arn"
+    },
+    "storageCatsDb2StreamArn": {
+      "Type": "String",
+      "Default": "storageCatsDb2StreamArn"
     }
   },
   "Conditions": {
@@ -72,6 +84,15 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
+            },
+            "STORAGE_CATSDB2_NAME": {
+              "Ref": "storageCatsDb2Name"
+            },
+            "STORAGE_CATSDB2_ARN": {
+              "Ref": "storageCatsDb2Arn"
+            },
+            "STORAGE_CATSDB2_STREAMARN": {
+              "Ref": "storageCatsDb2StreamArn"
             }
           }
         },
@@ -224,6 +245,58 @@
                 "rekognition:detectLabels"
               ],
               "Resource": "*"
+            }
+          ]
+        }
+      }
+    },
+    "AmplifyResourcesPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "amplify-lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Put*",
+                "dynamodb:Create*",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:Update*",
+                "dynamodb:RestoreTable*",
+                "dynamodb:Delete*"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storageCatsDb2Arn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storageCatsDb2Arn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
             }
           ]
         }

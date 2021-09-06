@@ -5,6 +5,7 @@
   "main": "index.js",
   "license": "Apache-2.0",
   "dependencies": {
+    "aws-sdk": "^2.983.0",
     "sharp": "^0.29.0",
     "uuid": "^3.3.2"
   }
