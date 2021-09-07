@@ -41,10 +41,12 @@ exports.handler = async (event) => {
 
     try { 
         const info = await sharp(origimage.Body).metadata();
-        const left = info.width > size ? parseInt((info.width - size) / 2) : 0;
-        const top = info.height > size ? parseInt((info.height - size) / 2) : 0;
+        const left = info.width > size ? parseInt(info.width / 4) : 0;
+        const top = info.height > size ? parseInt(info.height / 4) : 0;
+        const width = info.width > size ? parseInt(info.width / 2) : size;
+        const height = info.height > size ? parseInt(info.height / 2) : size;
 
-        var buffer = await sharp(origimage.Body).extract({left:left, top:top, width:size, height:size}).toBuffer();
+        var buffer = await sharp(origimage.Body).extract({left:left, top:top, width:width, height:height}).toBuffer();
             
     } catch (error) {
         console.log(error);

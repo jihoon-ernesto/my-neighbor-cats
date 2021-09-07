@@ -19,11 +19,11 @@
         },
         "lambdaForThumbnail": {
           "deploymentBucketName": "amplify-myneighborcats2-dev-113908-deployment",
-          "s3Key": "amplify-builds/lambdaForThumbnail-675651502f6d446a4651-build.zip"
+          "s3Key": "amplify-builds/lambdaForThumbnail-344d7470513472725672-build.zip"
         },
         "lambdaRekognition": {
           "deploymentBucketName": "amplify-myneighborcats2-dev-113908-deployment",
-          "s3Key": "amplify-builds/lambdaRekognition-5667763455344f475979-build.zip"
+          "s3Key": "amplify-builds/lambdaRekognition-6a2f55425643566e6d36-build.zip"
         }
       }
     }
