@@ -1,7 +1,0 @@
-{
-    "tableName": "CatsDb2",
-    "partitionKeyName": "cat_id",
-    "partitionKeyType": "S",
-    "sortKeyName": "data_type",
-    "sortKeyType": "S"
-}
