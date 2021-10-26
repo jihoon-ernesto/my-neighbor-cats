@@ -50,7 +50,7 @@ const createMarkers = (map: Map, cats: Array<Object>) => {
     });
 
     kakao.maps.event.addListener(marker, 'click', () => {
-      window.location.href = `/cat-photo?id=${cat.cat_id}`;
+      window.location.href = `/cat-photo?id=${cat.cat_id}&uploader=${cat.uploader}`;
     });
 
     return marker;
@@ -66,7 +66,7 @@ const createMarkers = (map: Map, cats: Array<Object>) => {
 const Map: React.FC = () => {
   const kakaoMap = React.useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const { id } = router.query;
+  const { id, user: username } = router.query;
   console.log('set position for cat id: ' + id);
 
   useEffect(() => {
@@ -127,9 +127,15 @@ const Map: React.FC = () => {
       anotherId = await getRandomId();
     }
 
-    router.push(`/cats-map?id=${anotherId}`);
+    reloadMap(anotherId, username);
   }
 
+  // TODO: fix type
+  const reloadMap = (catId: any, username: any) => {
+    router.push(`/cats-map?id=${catId}` + (username ? `&user=${username}` : ``));
+  }
+
+  const uploadBoxClass = [styles.uploadBox, username ? '' : styles.dimmed].join(' ');
   return (
     <div
       className={styles.mapPage}
@@ -139,12 +145,16 @@ const Map: React.FC = () => {
         <meta name="description" content="AWS ABP 2021 - 우리 동네 고양이" />
         <link rel="icon" href="/cat-face-256.png" />
       </Head>
-      <Upload />
+
+      <div className={uploadBoxClass}>
+        <Upload pageReloader={reloadMap} username={username} />
+      </div>
+
       <button
         className={styles.showAnother}
         onClick={showAnotherCat}
       >
-        Show another cat
+        Show another 🐱
       </button>
       <MapComponent ref={kakaoMap} />
     </div>

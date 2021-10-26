@@ -114,11 +114,19 @@ const getCatThumbnailUrl = async (catId) => {
     console.error(`Error in fetching thumbnail-url for ${catId}`, e);
   }
 
-  return url || '/question-mark.png';
+  if (url) {
+    return url;
+  }
+
+  // TODO: remove this workaround code after implementing DB update properly
+  const photoUrl = await getCatPhotoUrl(catId);
+  return photoUrl
+    .replace('my-cats-bucket', 'my-cats-bucket-resized')
+    .replace('.com/', '.com/resized-');
 }
 
 const getRandomId = async () => {
-  const catList = await getCatNameList();  
+  const catList = await getCatPhotoList();
   const randomIndex = parseInt(catList.length * Math.random());
   const cat = catList[randomIndex];
 
@@ -137,8 +145,16 @@ const getCatPosition = async catId => {
   };
 }
 
-const addNewCat = async (name, photoUrl) => {
-  console.log('add a new cat: ' + name + ', ' + photoUrl);
+// TODO: make a dedicated API
+const isCatPhoto = async catId => {
+  const catPhotoList = await getCatPhotoList();
+  const cat = catPhotoList.find(({cat_id}) => cat_id === catId);
+
+  return cat ? cat.is_cat : undefined;
+}
+
+const addNewCat = async (catName, photoUrl, username) => {
+  console.log('add a new cat: ' + catName + ', ' + photoUrl);
 
   let newCatId = '';
   try {
@@ -150,7 +166,7 @@ const addNewCat = async (name, photoUrl) => {
         'operation': 'create',
         'payload': {
           'Item': {
-            'name': name
+            'name': catName
           }
         }
       }),
@@ -158,7 +174,7 @@ const addNewCat = async (name, photoUrl) => {
     });
     newCatId = await resp.text();
   } catch (e) {
-    console.error(`Error in 'creat' for ${name}`, e);
+    console.error(`Error in 'creat' for ${catName}`, e);
   }
 
   if (!newCatId) {
@@ -180,6 +196,7 @@ const addNewCat = async (name, photoUrl) => {
         'payload': {
           'Item': {
             'cat_id': newCatId,
+            'uploader': username,
             'photo_url': photoUrl,
             // TODO: thumbnail_url handling
             'thumbnail_url': '',
@@ -202,6 +219,7 @@ const addNewCat = async (name, photoUrl) => {
 
   return {
     ok: true,
+    catId: newCatId,
   };
 }
 
@@ -213,5 +231,6 @@ export {
   getCatPhotoUrl,
   getCatThumbnailUrl,
   getCatName,
+  isCatPhoto,
   addNewCat,
 };

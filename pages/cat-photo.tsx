@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { getCatName, getCatPhotoUrl } from '../channel/backendInfo.js';
+import { getCatName, getCatPhotoUrl, isCatPhoto } from '../channel/backendInfo.js';
 import styles from '../styles/CatPhoto.module.scss';
 
 // TODO: fix type
@@ -10,25 +10,35 @@ const Photo: any = () => {
   const router = useRouter();
   const [imageSrc, setImageSrc] = useState('');
   const [catName, setCatName] = useState('');
+  const [uploaderName, setUploaderName] = useState('');
+  const [isCat, setIsCat] = useState(false);
 
   useEffect(() => {
-    const { id } = router.query;
+    let { id, uploader } = router.query;
     if (!id) {
       return;
     }
 
-    const catId = Array.isArray(id) ? id[0] : id || '';
+    // TODO: fix these stupid lines
+    id = Array.isArray(id) ? id[0] : id || '';
+    uploader = Array.isArray(uploader) ? uploader[0] : uploader || '';
 
-    getCatName(catId)
+    getCatName(id)
       .then((name: string) => {
         setCatName(name);
       });
 
-    getCatPhotoUrl(catId)
+    getCatPhotoUrl(id)
       .then((url: string) => {
         setImageSrc(url);
       });
 
+    isCatPhoto(id)
+      .then((isCat: boolean) => {
+        setIsCat(isCat);
+      })
+
+    setUploaderName(uploader);
   }, [router.query]);
 
   return (
@@ -42,6 +52,9 @@ const Photo: any = () => {
           <p className={styles.catName}>
             {catName}
           </p>
+          <p className={styles.uploader}>
+            (by {uploaderName})
+          </p>
         </div>
       )}
 
@@ -54,11 +67,18 @@ const Photo: any = () => {
         />
       )}
 
+      <p className={styles.isCat}>
+        cat detector:
+        <span className={isCat ? styles.msgPositive : styles.msgNegative}>
+          {isCat ? `"This is a cat."` : `"This is NOT a cat!"`}
+        </span>
+      </p>
+
       <button
         className={styles.back}
-        onClick={() => router.back()}
+        onClick={router.back}
         >
-        ← Back to the map
+        ← Back
       </button>
     </>
   );

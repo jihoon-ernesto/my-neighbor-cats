@@ -20,8 +20,33 @@
     height: 40px;
     padding: 20px;
     font-size: larger;
+    white-space: nowrap;
     display: flex;
     align-items: center;
+  }
+
+  > .uploader {
+    color: gray;
+    background-color: white;
+    height: 40px;
+    padding: 10px;
+  }
+}
+
+.isCat {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  padding: 10px;
+  background-color: whitesmoke;
+
+  .msgPositive {
+    margin-left: 20px;
+    color: blue;
+  }
+  .msgNegative {
+    margin-left: 20px;
+    color: red;
   }
 }
 
@@ -31,4 +56,5 @@
   font-size: 14px;
   position: absolute;
   cursor: pointer;
+  margin: 6px;
 }
