@@ -1,1 +1,9 @@
-{}
+{
+  "function": {
+    "CatsBackend": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  }
+}
