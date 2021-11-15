@@ -5,5 +5,21 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
+  },
+  "api": {
+    "CatsApi": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "CatsBackend",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    }
   }
 }

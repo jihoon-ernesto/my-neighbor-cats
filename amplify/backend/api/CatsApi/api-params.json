@@ -1,0 +1,35 @@
+{
+  "paths": [
+    {
+      "name": "/",
+      "lambdaFunction": "CatsBackend",
+      "privacy": {
+        "open": true
+      },
+      "policyResourceName": "/"
+    }
+  ],
+  "resourceName": "CatsApi",
+  "apiName": "CatsApi",
+  "functionArns": [
+    {
+      "lambdaFunction": "CatsBackend"
+    }
+  ],
+  "privacy": {
+    "auth": 0,
+    "unauth": 0,
+    "authRoleName": "amplify-myneighborcats-main-215343-authRole",
+    "unAuthRoleName": "amplify-myneighborcats-main-215343-unauthRole"
+  },
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "CatsBackend",
+      "attributes": [
+        "Name",
+        "Arn"
+      ]
+    }
+  ]
+}
