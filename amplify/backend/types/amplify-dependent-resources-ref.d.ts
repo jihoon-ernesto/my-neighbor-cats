@@ -16,6 +16,8 @@ export type AmplifyDependentResourcesAttributes = {
     },
     "auth": {
         "MyCatsAuth": {
+            "IdentityPoolId": "string",
+            "IdentityPoolName": "string",
             "HostedUIDomain": "string",
             "OAuthMetadata": "string",
             "UserPoolId": "string",
@@ -24,6 +26,12 @@ export type AmplifyDependentResourcesAttributes = {
             "AppClientIDWeb": "string",
             "AppClientID": "string",
             "CreatedSNSRole": "string"
+        }
+    },
+    "storage": {
+        "CatsBucket": {
+            "BucketName": "string",
+            "Region": "string"
         }
     }
 }
