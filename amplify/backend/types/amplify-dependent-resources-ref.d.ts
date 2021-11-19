@@ -32,6 +32,16 @@ export type AmplifyDependentResourcesAttributes = {
         "CatsBucket": {
             "BucketName": "string",
             "Region": "string"
+        },
+        "CatsDB": {
+            "Name": "string",
+            "Arn": "string",
+            "StreamArn": "string",
+            "PartitionKeyName": "string",
+            "PartitionKeyType": "string",
+            "SortKeyName": "string",
+            "SortKeyType": "string",
+            "Region": "string"
         }
     }
 }

@@ -54,6 +54,10 @@
       "service": "S3",
       "providerPlugin": "awscloudformation",
       "dependsOn": []
+    },
+    "CatsDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
     }
   }
 }
