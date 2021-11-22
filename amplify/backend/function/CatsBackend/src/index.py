@@ -13,7 +13,7 @@ commonHeaders = {
 }
 
 # use DB name from a predefined env vars for Lambda
-dynamo = boto3.resource('dynamodb').Table(os.environ['STORAGE_CATSDB2_NAME'])
+dynamo = boto3.resource('dynamodb').Table(os.environ['CATS_DB_NAME'])
 
 def createCat(Item):
   data_type = 'info#' + Item['name']
