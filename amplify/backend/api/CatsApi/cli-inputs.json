@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "paths": {
+    "/": {
+      "permissions": {
+        "setting": "open"
+      },
+      "lambdaFunction": "CatsBackend"
+    }
+  }
+}
