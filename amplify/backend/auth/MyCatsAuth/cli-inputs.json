@@ -44,7 +44,6 @@
     "hostedUIDomainName": "mycats",
     "authProvidersUserPool": [],
     "hostedUIProviderMeta": "[]",
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"implicit\"],\"AllowedOAuthScopes\":[\"email\",\"openid\",\"profile\"],\"CallbackURLs\":[\"https://main.d2do9owq33otga.amplifyapp.com/token/\",\"http://localhost:3000/token/\"],\"LogoutURLs\":[\"https://main.d2do9owq33otga.amplifyapp.com/\",\"http://localhost:3000/\"]}",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
@@ -62,6 +61,12 @@
       ]
     },
     "breakCircularDependency": true,
-    "dependsOn": []
+    "dependsOn": [],
+    "hostedUIProviderCreds": "[]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"implicit\"],\"AllowedOAuthScopes\":[\"email\",\"openid\",\"profile\"],\"CallbackURLs\":[\"https://main.d2do9owq33otga.amplifyapp.com/token/\",\"http://localhost:3000/token/\",\"https://dev-jihoon.d2do9owq33otga.amplifyapp.com/token/\"],\"LogoutURLs\":[\"https://main.d2do9owq33otga.amplifyapp.com/\",\"http://localhost:3000/\",\"https://dev-jihoon.d2do9owq33otga.amplifyapp.com/\"]}",
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "permissions": []
   }
 }
