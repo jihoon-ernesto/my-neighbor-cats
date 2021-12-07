@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "storage": {
+      "CatsBucket": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}
