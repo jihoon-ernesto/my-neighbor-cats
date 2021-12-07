@@ -1,5 +1,8 @@
 module.exports = {
   images: {
-    domains: ['my-cats-bucket.s3-ap-northeast-2.amazonaws.com'],
+    domains: [
+      'catsbucket215343-main.s3.ap-northeast-2.amazonaws.com',
+      'catsbucket150419-devjihoon.s3-ap-northeast-2.amazonaws.com',
+    ],
   },
 }
