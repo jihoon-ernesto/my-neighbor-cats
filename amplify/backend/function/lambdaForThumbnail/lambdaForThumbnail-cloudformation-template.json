@@ -19,6 +19,10 @@
     "storageCatsBucketBucketName": {
       "Type": "String",
       "Default": "storageCatsBucketBucketName"
+    },
+    "functionmyneighborcatslayerForSharpArn": {
+      "Type": "String",
+      "Default": "functionmyneighborcatslayerForSharpArn"
     }
   },
   "Conditions": {
@@ -86,7 +90,11 @@
           ]
         },
         "Runtime": "nodejs14.x",
-        "Layers": [],
+        "Layers": [
+          {
+            "Ref": "functionmyneighborcatslayerForSharpArn"
+          }
+        ],
         "Timeout": 25
       }
     },

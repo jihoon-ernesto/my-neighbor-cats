@@ -5,7 +5,6 @@
 Amplify Params - DO NOT EDIT */
 
 const AWS = require('aws-sdk');
-const util = require('util');
 const s3 = new AWS.S3({ signatureVersion: 'v4' });
 const sharp = require('sharp');
 

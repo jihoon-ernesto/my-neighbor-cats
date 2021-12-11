@@ -1,0 +1,8 @@
+{
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "sharp": "^0.29.3"
+  }
+}
