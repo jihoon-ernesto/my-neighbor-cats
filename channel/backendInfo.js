@@ -118,10 +118,10 @@ const getCatThumbnailUrl = async (catId) => {
     return url;
   }
 
-  // TODO: remove this workaround code after implementing DB update properly
+  // FIXME: remove this silly workaround code after implementing DB update properly
   const photoUrl = await getCatPhotoUrl(catId);
   return photoUrl
-    .replace('my-cats-bucket', 'my-cats-bucket-resized')
+    .replace('.s3-', '-resized.s3-')
     .replace('.com/', '.com/resized-');
 }
 
