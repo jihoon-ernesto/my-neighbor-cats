@@ -4,6 +4,16 @@ import { AppProps } from "next/app";
 import Amplify from "@aws-amplify/core";
 import Auth from "@aws-amplify/auth";
 
+console.assert(
+  process.env.NEXT_PUBLIC_USER_POOL_ID &&
+  process.env.NEXT_PUBLIC_USER_POOL_CLIENT_ID &&
+  process.env.NEXT_PUBLIC_AUTH_COOKIE_DOMAIN &&
+  process.env.NEXT_PUBLIC_IDP_DOMAIN &&
+  process.env.NEXT_PUBLIC_REDIRECT_SIGN_IN &&
+  process.env.NEXT_PUBLIC_REDIRECT_SIGN_OUT,
+  '\n! env vars for Cognito were NOT set properly !'
+);
+
 Amplify.configure({
   Auth: {
     region: "ap-northeast-2", //! Konfiguration

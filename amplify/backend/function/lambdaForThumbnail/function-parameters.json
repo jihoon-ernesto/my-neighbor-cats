@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "storage": {
+      "CatsBucket": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "myneighborcatslayerForSharp",
+      "env": "devjihoon",
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "resourceName": "CatsDB",
+  "tableName": "CatsDB",
+  "partitionKey": {
+    "fieldName": "cat_id",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "data_type",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

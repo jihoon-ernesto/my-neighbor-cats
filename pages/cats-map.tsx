@@ -77,7 +77,7 @@ const Map: React.FC = () => {
       return;
     }
     if (!id) {
-      return;
+      console.error('invalid cat id');
     }
 
     kakao.maps.load(async () => {
