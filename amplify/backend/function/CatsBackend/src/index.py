@@ -171,7 +171,7 @@ def handler(event, context):
   }
 
   print("operation: " + str(operation) + "\n")
-  print("payload: " + body.get('payload') + "\n")
+  print("payload: " + (body.get('payload') or "(none)") + "\n")
 
   if operation in operations :
     return operations[operation](body.get('payload'))
