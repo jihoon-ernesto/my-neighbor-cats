@@ -1,1 +1,3 @@
-{ "test": "event" }
+{ 
+  "operation": "cat-photo-list"
+}
