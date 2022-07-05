@@ -2,7 +2,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "resolutions": {
+    "minipass": "2.7.0"
+  },
   "dependencies": {
-    "sharp": "^0.29.3"
+    "sharp": "^0.30.7"
   }
 }
