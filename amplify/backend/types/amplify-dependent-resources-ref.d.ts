@@ -11,9 +11,6 @@ export type AmplifyDependentResourcesAttributes = {
             "Arn": "string",
             "Region": "string",
             "LambdaExecutionRole": "string"
-        },
-        "myneighborcatslayerForSharp": {
-            "Arn": "string"
         }
     },
     "api": {

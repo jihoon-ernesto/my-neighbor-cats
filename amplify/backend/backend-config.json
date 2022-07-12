@@ -12,13 +12,6 @@
       "service": "Lambda",
       "dependsOn": [
         {
-          "category": "function",
-          "resourceName": "myneighborcatslayerForSharp",
-          "attributes": [
-            "Arn"
-          ]
-        },
-        {
           "category": "storage",
           "resourceName": "CatsBucket",
           "attributes": [
@@ -26,11 +19,6 @@
           ]
         }
       ]
-    },
-    "myneighborcatslayerForSharp": {
-      "providerPlugin": "awscloudformation",
-      "service": "LambdaLayer",
-      "build": true
     }
   },
   "api": {

@@ -90,11 +90,7 @@
           ]
         },
         "Runtime": "nodejs14.x",
-        "Layers": [
-          {
-            "Ref": "functionmyneighborcatslayerForSharpArn"
-          }
-        ],
+        "Layers": [],
         "Timeout": 25
       }
     },

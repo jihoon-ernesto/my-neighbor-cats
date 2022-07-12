@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "amplify:myneighborcatslayerForSharp": "cd amplify/backend/function/myneighborcatslayerForSharp/lib/nodejs && npm install && rm -rf node_modules/sharp && SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm install --arch=x64 --platform=linux --libc=glibc sharp && cd -"
+    "amplify:lambdaForThumbnail": "cd amplify/backend/function/lambdaForThumbnail/src && npm install && rm -rf node_modules/sharp && SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm install --arch=x64 --platform=linux --libc=glibc sharp && cd -"
   },
   "dependencies": {
     "@aws-amplify/auth": "^4.3.0",
