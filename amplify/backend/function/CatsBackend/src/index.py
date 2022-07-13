@@ -147,6 +147,7 @@ def getThumbnailUrl(Item):
 
 
 def handler(event, context):
+  # TODO: remove this debug logging
   print("------\nReceived event: " + json.dumps(event, indent=2) + "\n-----\n")
 
   httpMethod = event.get('httpMethod')
@@ -171,7 +172,6 @@ def handler(event, context):
   }
 
   print("operation: " + str(operation) + "\n")
-  print("payload: " + (body.get('payload') or "(none)") + "\n")
 
   if operation in operations :
     return operations[operation](body.get('payload'))
