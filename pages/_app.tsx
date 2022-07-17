@@ -16,7 +16,7 @@ console.assert(
 
 Amplify.configure({
   Auth: {
-    region: "ap-northeast-2", //! Konfiguration
+    region: process.env.NEXT_PUBLIC_AWS_REGION, //! Konfiguration
     userPoolId: process.env.NEXT_PUBLIC_USER_POOL_ID,
     userPoolWebClientId: process.env.NEXT_PUBLIC_USER_POOL_CLIENT_ID,
 
