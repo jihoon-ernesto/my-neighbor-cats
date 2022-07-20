@@ -8,7 +8,7 @@ backend:
         - wget -q https://github.com/libvips/libvips/releases/download/v8.12.2/vips-8.12.2.tar.gz
         - tar -xzf vips-8.12.2.tar.gz
         - cd vips-8.12.2
-        - ./configure
+        - ./configure -q
         - make
         - make install
         - cd ..  
