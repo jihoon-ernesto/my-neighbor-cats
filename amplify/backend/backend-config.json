@@ -1,89 +1,107 @@
 {
-  "function": {
-    "CatsBackend": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": []
-    },
-    "lambdaForThumbnail": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "myneighborcatslayerForSharp",
-          "attributes": [
-            "Arn"
-          ]
-        },
-        {
-          "category": "storage",
-          "resourceName": "CatsBucket",
-          "attributes": [
-            "BucketName"
-          ]
-        }
-      ]
-    },
-    "myneighborcatslayerForSharp": {
-      "providerPlugin": "awscloudformation",
-      "service": "LambdaLayer",
-      "build": true
-    }
-  },
   "api": {
     "CatsApi": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
-          "category": "function",
-          "resourceName": "CatsBackend",
           "attributes": [
             "Name",
             "Arn"
-          ]
+          ],
+          "category": "function",
+          "resourceName": "CatsBackend"
         }
-      ]
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
     }
   },
   "auth": {
     "MyCatsAuth": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
       "customAuth": false,
+      "dependsOn": [],
       "frontendAuthConfig": {
-        "socialProviders": [],
-        "usernameAttributes": [],
-        "signupAttributes": [
-          "EMAIL"
-        ],
-        "passwordProtectionSettings": {
-          "passwordPolicyMinLength": 8,
-          "passwordPolicyCharacters": []
-        },
         "mfaConfiguration": "OFF",
         "mfaTypes": [
           "SMS"
         ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
         "verificationMechanisms": [
           "EMAIL"
         ]
-      }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "CatsBackend": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "lambdaForThumbnail": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "myneighborcatslayerForSharp"
+        },
+        {
+          "attributes": [
+            "BucketName"
+          ],
+          "category": "storage",
+          "resourceName": "CatsBucket"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "myneighborcatslayerForSharp": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_myneighborcatslayerForSharp_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myneighborcatslayerForSharp"
+        }
+      ]
+    },
+    "AMPLIFY_function_myneighborcatslayerForSharp_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myneighborcatslayerForSharp"
+        }
+      ]
     }
   },
   "storage": {
     "CatsBucket": {
-      "service": "S3",
+      "dependsOn": [],
       "providerPlugin": "awscloudformation",
-      "dependsOn": []
+      "service": "S3"
     },
     "CatsDB": {
-      "service": "DynamoDB",
-      "providerPlugin": "awscloudformation"
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
     }
   }
 }
