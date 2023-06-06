@@ -64,6 +64,14 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_CatsBackend_catsDbName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "CatsBackend"
+        }
+      ]
+    },
     "AMPLIFY_function_CatsBackend_deploymentBucketName": {
       "usedBy": [
         {
