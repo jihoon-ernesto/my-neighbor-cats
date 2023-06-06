@@ -1,6 +1,17 @@
 version: 1
 backend:
   phases:
+    preBuild:
+      commands:
+        - '# Install gtk-doc; download, make and install vips'
+        - yum -y install gtk-doc
+        - wget -q https://github.com/libvips/libvips/releases/download/v8.12.2/vips-8.12.2.tar.gz
+        - tar -xzf vips-8.12.2.tar.gz
+        - cd vips-8.12.2
+        - ./configure -q
+        - make -s
+        - make -s install
+        - cd ..
     build:
       commands:
         - update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.8 11

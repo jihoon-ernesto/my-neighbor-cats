@@ -1,56 +1,53 @@
 export type AmplifyDependentResourcesAttributes = {
-  "api": {
-    "CatsApi": {
-      "ApiId": "string",
-      "ApiName": "string",
-      "RootUrl": "string"
-    }
-  },
-  "auth": {
-    "MyCatsAuth": {
-      "AppClientID": "string",
-      "AppClientIDWeb": "string",
-      "CreatedSNSRole": "string",
-      "HostedUIDomain": "string",
-      "IdentityPoolId": "string",
-      "IdentityPoolName": "string",
-      "OAuthMetadata": "string",
-      "UserPoolArn": "string",
-      "UserPoolId": "string",
-      "UserPoolName": "string"
-    }
-  },
-  "function": {
-    "CatsBackend": {
-      "Arn": "string",
-      "LambdaExecutionRole": "string",
-      "Name": "string",
-      "Region": "string"
+    "function": {
+        "CatsBackend": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
+        },
+        "lambdaForThumbnail": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
+        }
     },
-    "lambdaForThumbnail": {
-      "Arn": "string",
-      "LambdaExecutionRole": "string",
-      "Name": "string",
-      "Region": "string"
+    "api": {
+        "CatsApi": {
+            "RootUrl": "string",
+            "ApiName": "string",
+            "ApiId": "string"
+        }
     },
-    "myneighborcatslayerForSharp": {
-      "Arn": "string"
-    }
-  },
-  "storage": {
-    "CatsBucket": {
-      "BucketName": "string",
-      "Region": "string"
+    "auth": {
+        "MyCatsAuth": {
+            "IdentityPoolId": "string",
+            "IdentityPoolName": "string",
+            "HostedUIDomain": "string",
+            "OAuthMetadata": "string",
+            "UserPoolId": "string",
+            "UserPoolArn": "string",
+            "UserPoolName": "string",
+            "AppClientIDWeb": "string",
+            "AppClientID": "string",
+            "CreatedSNSRole": "string"
+        }
     },
-    "CatsDB": {
-      "Arn": "string",
-      "Name": "string",
-      "PartitionKeyName": "string",
-      "PartitionKeyType": "string",
-      "Region": "string",
-      "SortKeyName": "string",
-      "SortKeyType": "string",
-      "StreamArn": "string"
+    "storage": {
+        "CatsBucket": {
+            "BucketName": "string",
+            "Region": "string"
+        },
+        "CatsDB": {
+            "Name": "string",
+            "Arn": "string",
+            "StreamArn": "string",
+            "PartitionKeyName": "string",
+            "PartitionKeyType": "string",
+            "SortKeyName": "string",
+            "SortKeyType": "string",
+            "Region": "string"
+        }
     }
-  }
 }

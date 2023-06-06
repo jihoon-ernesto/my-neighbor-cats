@@ -150,7 +150,7 @@ const isCatPhoto = async catId => {
   const catPhotoList = await getCatPhotoList();
   const cat = catPhotoList.find(({cat_id}) => cat_id === catId);
 
-  return cat ? cat.is_cat : undefined;
+  return cat?.is_cat || undefined;
 }
 
 const addNewCat = async (catName, photoUrl, username) => {
