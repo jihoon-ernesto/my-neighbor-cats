@@ -53,13 +53,6 @@
       "dependsOn": [
         {
           "attributes": [
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "myneighborcatslayerForSharp"
-        },
-        {
-          "attributes": [
             "BucketName"
           ],
           "category": "storage",
@@ -68,29 +61,6 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
-    },
-    "myneighborcatslayerForSharp": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "LambdaLayer"
-    }
-  },
-  "parameters": {
-    "AMPLIFY_function_myneighborcatslayerForSharp_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "myneighborcatslayerForSharp"
-        }
-      ]
-    },
-    "AMPLIFY_function_myneighborcatslayerForSharp_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "myneighborcatslayerForSharp"
-        }
-      ]
     }
   },
   "storage": {
