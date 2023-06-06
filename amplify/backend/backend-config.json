@@ -63,6 +63,56 @@
       "service": "Lambda"
     }
   },
+  "parameters": {
+    "AMPLIFY_function_CatsBackend_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "CatsBackend"
+        }
+      ]
+    },
+    "AMPLIFY_function_CatsBackend_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "CatsBackend"
+        }
+      ]
+    },
+    "AMPLIFY_function_lambdaForThumbnail_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "lambdaForThumbnail"
+        }
+      ]
+    },
+    "AMPLIFY_function_lambdaForThumbnail_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "lambdaForThumbnail"
+        }
+      ]
+    },
+    "AMPLIFY_function_myneighborcatslayerForSharp_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myneighborcatslayerForSharp"
+        }
+      ]
+    },
+    "AMPLIFY_function_myneighborcatslayerForSharp_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "myneighborcatslayerForSharp"
+        }
+      ]
+    }
+  },
   "storage": {
     "CatsBucket": {
       "dependsOn": [],
