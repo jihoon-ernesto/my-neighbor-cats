@@ -12,6 +12,8 @@ commonHeaders = {
   'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
 }
 
+print("CATS_DB_NAME: " + os.environ['CATS_DB_NAME'] + "\n")
+
 # use DB name from a predefined env vars for Lambda
 dynamo = boto3.resource('dynamodb').Table(os.environ['CATS_DB_NAME'])
 
@@ -145,7 +147,8 @@ def getThumbnailUrl(Item):
 
 
 def handler(event, context):
-  # print("------\nReceived event: " + json.dumps(event, indent=2) + "\n-----\n")
+  # TODO: remove this debug logging
+  print("------\nReceived event: " + json.dumps(event, indent=2) + "\n-----\n")
 
   httpMethod = event.get('httpMethod')
   if httpMethod == 'OPTIONS' :
@@ -167,6 +170,8 @@ def handler(event, context):
       'cat-name-list': lambda x: getCatNameList(),
       'cat-photo-list': lambda x: getCatPhotoList()
   }
+
+  print("operation: " + str(operation) + "\n")
 
   if operation in operations :
     return operations[operation](body.get('payload'))
