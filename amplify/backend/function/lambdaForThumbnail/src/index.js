@@ -15,6 +15,7 @@ exports.handler = async (event) => {
 
     const srcBucket = s3Record.bucket.name;
     const srcKey = decodeURIComponent(s3Record.object.key.replace(/\+/g, ' '));
+    console.log(`received sns info: bucket ${srcBucket}, key ${srcKey}`);
 
     const thumbBucket = srcBucket + '-resized';
     const thumbKey = 'resized-' + srcKey;
